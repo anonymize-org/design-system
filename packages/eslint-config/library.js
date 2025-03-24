@@ -1,35 +1,32 @@
-const { resolve } = require("node:path");
+import js from "@eslint/js";
+import eslintConfigPrettier from "eslint-config-prettier";
+import turboPlugin from "eslint-plugin-turbo";
+import tseslint from "typescript-eslint";
+import onlyWarn from "eslint-plugin-only-warn";
 
-const project = resolve(process.cwd(), "tsconfig.json");
-
-/*
- * This is a custom ESLint configuration for use with
- * typescript packages.
+/**
+ * A shared ESLint configuration for the repository.
  *
- * This config extends the Vercel Engineering Style Guide.
- * For more information, see https://github.com/vercel/style-guide
- *
- */
-
-module.exports = {
-  extends: [
-    "@vercel/style-guide/eslint/node",
-    "@vercel/style-guide/eslint/typescript",
-  ].map(require.resolve),
-  parserOptions: {
-    project,
-  },
-  plugins: ["only-warn"],
-  globals: {
-    React: true,
-    JSX: true,
-  },
-  settings: {
-    "import/resolver": {
-      typescript: {
-        project,
-      },
+ * @type {import("eslint").Linter.Config}
+ * */
+export const config = [
+  js.configs.recommended,
+  eslintConfigPrettier,
+  ...tseslint.configs.recommended,
+  {
+    plugins: {
+      turbo: turboPlugin,
+    },
+    rules: {
+      "turbo/no-undeclared-env-vars": "warn",
     },
   },
-  ignorePatterns: ["node_modules/", "dist/"],
-};
+  {
+    plugins: {
+      onlyWarn,
+    },
+  },
+  {
+    ignores: ["dist/**"],
+  },
+];

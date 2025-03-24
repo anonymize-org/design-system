@@ -1,9 +1,11 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig((options) => ({
-  entryPoints: ["src/button.tsx"],
+  entry: ["src/index.ts", "src/components", "src/hooks", "src/lib"],
   format: ["cjs", "esm"],
   dts: true,
+  treeshake: true,
   external: ["react"],
+  clean: true,
   ...options,
 }));
