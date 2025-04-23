@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-vite";
+import { resolve } from "node:path";
 
 const config: StorybookConfig = {
   stories: ["../stories/*.stories.tsx", "../stories/**/*.stories.tsx"],
@@ -15,8 +16,11 @@ const config: StorybookConfig = {
       resolve: {
         alias: [
           {
-            find: "ui",
-            replacement: "../../../packages/ui/",
+            find: "@secrecy/ui/components",
+            replacement: resolve(
+              import.meta.dirname,
+              "../../../packages/ui/dist/components",
+            ),
           },
         ],
       },
