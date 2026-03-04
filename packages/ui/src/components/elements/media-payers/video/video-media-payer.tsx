@@ -84,4 +84,4 @@ function VideoPlayer({
 	);
 }
 
-export default VideoPlayer;
+export { VideoPlayer };

@@ -91,8 +91,7 @@ function VideoControls({
 						onToggleMute={onToggleMute}
 						onVolumeChange={onVolumeChange}
 						size='md'
-						className='sds:hidden md:sds:flex'
-						classes={{ slider: 'sds:w-20' }}
+						variant='light'
 					/>
 				</div>
 
