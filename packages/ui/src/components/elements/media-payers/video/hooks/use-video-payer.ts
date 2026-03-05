@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export const useVideoPlayer = () => {
+const useVideoPlayer = () => {
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [isPlaying, setIsPlaying] = useState(false);
@@ -18,12 +18,16 @@ export const useVideoPlayer = () => {
 
 	// Setup video event listeners
 	useEffect(() => {
+		isMountedRef.current = true;
+
 		const video = videoRef.current;
 		if (!video) return;
 
-		const updateTime = () => setCurrentTime(video.currentTime);
-		const updateDuration = () => setDuration(video.duration);
-		const handleEnded = () => setIsPlaying(false);
+		const updateTime = () =>
+			isMountedRef.current && setCurrentTime(video.currentTime);
+		const updateDuration = () =>
+			isMountedRef.current && setDuration(video.duration);
+		const handleEnded = () => isMountedRef.current && setIsPlaying(false);
 		const handlePlay = () => isMountedRef.current && setIsPlaying(true);
 		const handlePause = () => isMountedRef.current && setIsPlaying(false);
 
@@ -39,6 +43,7 @@ export const useVideoPlayer = () => {
 			video.removeEventListener('ended', handleEnded);
 			video.removeEventListener('play', handlePlay);
 			video.removeEventListener('pause', handlePause);
+			isMountedRef.current = false;
 		};
 	}, []);
 
@@ -91,7 +96,9 @@ export const useVideoPlayer = () => {
 		if (videoRef.current) {
 			if (isPlaying) {
 				videoRef.current.pause();
+				setIsPlaying(false);
 			} else {
+				setIsPlaying(true);
 				const playPromise = videoRef.current.play();
 				if (playPromise !== undefined) {
 					playPromise.catch((error) => {
@@ -190,3 +197,5 @@ export const useVideoPlayer = () => {
 		formatTime,
 	};
 };
+
+export { useVideoPlayer };

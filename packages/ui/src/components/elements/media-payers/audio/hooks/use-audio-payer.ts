@@ -8,14 +8,18 @@ export const useAudioPlayer = () => {
 	const [isMuted, setIsMuted] = useState(false);
 
 	const audioRef = useRef<HTMLAudioElement>(null);
-	const isMountedRef = useRef(true);
+	const isMountedRef = useRef(false);
 
 	useEffect(() => {
 		const audio = audioRef.current;
 		if (!audio) return;
 
-		const updateTime = () => setCurrentTime(audio.currentTime);
-		const updateDuration = () => setDuration(audio.duration);
+		isMountedRef.current = true;
+
+		const updateTime = () =>
+			isMountedRef.current && setCurrentTime(audio.currentTime);
+		const updateDuration = () =>
+			isMountedRef.current && setDuration(audio.duration);
 		const handleEnded = () => isMountedRef.current && setIsPlaying(false);
 		const handlePlay = () => isMountedRef.current && setIsPlaying(true);
 		const handlePause = () => isMountedRef.current && setIsPlaying(false);
@@ -32,6 +36,7 @@ export const useAudioPlayer = () => {
 			audio.removeEventListener('ended', handleEnded);
 			audio.removeEventListener('play', handlePlay);
 			audio.removeEventListener('pause', handlePause);
+			isMountedRef.current = false;
 		};
 	}, []);
 
@@ -41,18 +46,13 @@ export const useAudioPlayer = () => {
 		}
 	}, [volume, isMuted]);
 
-	// Cleanup on unmount
-	useEffect(() => {
-		return () => {
-			isMountedRef.current = false;
-		};
-	}, []);
-
 	const togglePlay = () => {
 		if (audioRef.current) {
 			if (isPlaying) {
 				audioRef.current.pause();
+				setIsPlaying(false);
 			} else {
+				setIsPlaying(true);
 				const playPromise = audioRef.current.play();
 				if (playPromise !== undefined) {
 					playPromise.catch((error) => {
@@ -88,6 +88,18 @@ export const useAudioPlayer = () => {
 		setIsMuted(!isMuted);
 	};
 
+	const skip = (seconds: number) => {
+		if (audioRef.current && audioRef.current.duration > 0) {
+			audioRef.current.currentTime = Math.max(
+				0,
+				Math.min(
+					audioRef.current.currentTime + seconds,
+					audioRef.current.duration,
+				),
+			);
+		}
+	};
+
 	const formatTime = (time: number) => {
 		if (!Number.isFinite(time)) return '0:00';
 		const totalSeconds = Math.floor(time);
@@ -107,6 +119,7 @@ export const useAudioPlayer = () => {
 		handleSeek,
 		handleVolumeChange,
 		toggleMute,
+		skip,
 		formatTime,
 	};
 };

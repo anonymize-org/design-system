@@ -1,6 +1,10 @@
 import { cn } from '@/lib/utils';
-import PlayPauseButton from '../shared/play-pause-btn';
-import VolumeControl from '../shared/volume-controls';
+import {
+	PlayPauseButton,
+	SkipButton,
+	VolumeControl,
+} from '../shared/payer-controls-btn';
+import { Size, Variant } from '../shared/types';
 
 interface AudioControlsProps {
 	isPlaying: boolean;
@@ -9,7 +13,10 @@ interface AudioControlsProps {
 	onTogglePlay: () => void;
 	onVolumeChange: (value: number[]) => void;
 	onToggleMute: () => void;
+	onSkip: (seconds: number) => void;
 	className?: string;
+	variant?: Variant;
+	size?: Size;
 }
 
 function AudioControls({
@@ -19,29 +26,51 @@ function AudioControls({
 	onTogglePlay,
 	onVolumeChange,
 	onToggleMute,
+	onSkip,
 	className,
-}: AudioControlsProps): React.JSX.Element {
+	variant = 'dark',
+	size = 'sm',
+}: AudioControlsProps) {
 	return (
 		<div
 			className={cn(
 				'sds:flex sds:items-center sds:justify-between sds:gap-4',
 				className,
 			)}>
-			<PlayPauseButton
-				isPlaying={isPlaying}
-				onTogglePlay={onTogglePlay}
-				size='lg'
-				variant='dark'
-			/>
+			<div className='sds:flex sds:items-center sds:gap-2 md:sds:gap-4'>
+				<PlayPauseButton
+					isPlaying={isPlaying}
+					onTogglePlay={onTogglePlay}
+					variant={variant}
+					size={size}
+				/>
+				<SkipButton
+					direction='backward'
+					seconds={5}
+					onSkip={onSkip}
+					size={size}
+					variant={variant}
+				/>
+				<SkipButton
+					direction='forward'
+					seconds={5}
+					onSkip={onSkip}
+					size={size}
+					variant={variant}
+				/>
+			</div>
 
-			<VolumeControl
-				volume={volume}
-				isMuted={isMuted}
-				onToggleMute={onToggleMute}
-				onVolumeChange={onVolumeChange}
-				size='sm'
-				variant='dark'
-			/>
+			{/* Controls - Volume */}
+			<div className='sds:flex sds:items-center sds:gap-2'>
+				<VolumeControl
+					volume={volume}
+					isMuted={isMuted}
+					onToggleMute={onToggleMute}
+					onVolumeChange={onVolumeChange}
+					size={size}
+					variant={variant}
+				/>
+			</div>
 		</div>
 	);
 }

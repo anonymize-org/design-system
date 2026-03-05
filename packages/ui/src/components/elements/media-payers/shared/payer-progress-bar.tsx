@@ -1,9 +1,8 @@
 import { Slider } from '@/components/core/slider';
 import { cn } from '@/lib/utils';
-import { Variant } from './types';
 
 const textClasses = {
-	light: 'sds:text-white/90 sds:font-mono',
+	light: 'sds:text-primary-foreground sds:font-mono',
 	dark: 'sds:text-primary-foreground/70',
 };
 
@@ -13,10 +12,8 @@ interface ProgressBarProps {
 	onSeek: (value: number[]) => void;
 	formatTime: (time: number) => string;
 	className?: string;
-	classes?: {
-		text?: string;
-	};
-	variant?: Variant;
+	textClassName?: string;
+	variant?: 'light' | 'dark';
 }
 
 function ProgressBar({
@@ -25,7 +22,7 @@ function ProgressBar({
 	onSeek,
 	formatTime,
 	className,
-	classes,
+	textClassName,
 	variant = 'light',
 }: ProgressBarProps): React.JSX.Element {
 	return (
@@ -39,9 +36,9 @@ function ProgressBar({
 			/>
 			<div
 				className={cn(
-					'sds:flex sds:justify-between sds:text-sm',
+					'sds:flex sds:justify-between sds:text-xs',
 					textClasses[variant],
-					classes?.text,
+					textClassName,
 				)}>
 				<span>{formatTime(currentTime)}</span>
 				<span>{formatTime(duration)}</span>
@@ -50,4 +47,4 @@ function ProgressBar({
 	);
 }
 
-export default ProgressBar;
+export { ProgressBar };

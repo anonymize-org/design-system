@@ -7,9 +7,6 @@ const meta: Meta<typeof AudioPlayer> = {
 		track: {
 			control: { type: 'object' },
 		},
-		className: {
-			control: { type: 'text' },
-		},
 	},
 	parameters: {
 		layout: 'centered',
@@ -97,6 +94,5 @@ export const CustomStyling: Story = {
 			type: 'audio/mp3',
 			src: '/audio/audio-sample.mp3',
 		},
-		className: 'rounded-2xl bg-gradient-to-br from-purple-50 to-blue-50 p-6',
 	},
 };
