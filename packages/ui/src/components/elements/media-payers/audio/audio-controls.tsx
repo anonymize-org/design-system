@@ -34,10 +34,10 @@ function AudioControls({
 	return (
 		<div
 			className={cn(
-				'sds:flex sds:items-center sds:justify-between sds:gap-4',
+				'sds:flex sds:items-center sds:justify-between sds:gap-2 sds:md:gap-4',
 				className,
 			)}>
-			<div className='sds:flex sds:items-center sds:gap-2 md:sds:gap-4'>
+			<div className='sds:flex sds:items-center sds:gap-1 sds:md:gap-4'>
 				<PlayPauseButton
 					isPlaying={isPlaying}
 					onTogglePlay={onTogglePlay}
@@ -60,17 +60,14 @@ function AudioControls({
 				/>
 			</div>
 
-			{/* Controls - Volume */}
-			<div className='sds:flex sds:items-center sds:gap-2'>
-				<VolumeControl
-					volume={volume}
-					isMuted={isMuted}
-					onToggleMute={onToggleMute}
-					onVolumeChange={onVolumeChange}
-					size={size}
-					variant={variant}
-				/>
-			</div>
+			<VolumeControl
+				volume={volume}
+				isMuted={isMuted}
+				onToggleMute={onToggleMute}
+				onVolumeChange={onVolumeChange}
+				size={size}
+				variant={variant}
+			/>
 		</div>
 	);
 }

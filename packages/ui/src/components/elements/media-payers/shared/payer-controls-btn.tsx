@@ -154,7 +154,7 @@ function VolumeControl({
 	variant = 'light',
 }: VolumeControlProps): React.JSX.Element {
 	return (
-		<div className={cn('sds:flex sds:items-center sds:gap-2', className)}>
+		<div className={cn('sds:flex sds:items-center sds:sm:gap-2', className)}>
 			<Button
 				variant='ghost'
 				size='icon'
@@ -176,7 +176,10 @@ function VolumeControl({
 				max={1}
 				step={0.01}
 				onValueChange={onVolumeChange}
-				className={cn('sds:min-w-20 sds:cursor-pointer', classes?.slider)}
+				className={cn(
+					'sds:w-18 sds:min-w-0 sds:sm:w-24 sds:md:w-28 sds:cursor-pointer',
+					classes?.slider,
+				)}
 			/>
 		</div>
 	);

@@ -24,7 +24,7 @@ export const PlayerHeadlines = ({
 				className='sds:text-primary-foreground sds:text-lg sds:drop-shadow-md'>
 				{title}
 			</Title>
-			<p className='sds:text-primary-foreground/90 sds:text-sm sds:drop-shadow-md sm:sds:text-base'>
+			<p className='sds:text-primary-foreground/90 sds:text-sm sds:drop-shadow-md sds:sm:text-base'>
 				{description}
 			</p>
 		</div>

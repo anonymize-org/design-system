@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import {
 	PlayPauseButton,
 	SkipButton,
@@ -15,6 +16,7 @@ interface VideoControlsProps {
 	onSkip: (seconds: number) => void;
 	variant?: Variant;
 	size?: Size;
+	className?: string;
 }
 
 function VideoControls({
@@ -27,9 +29,14 @@ function VideoControls({
 	onSkip,
 	variant = 'light',
 	size = 'md',
+	className,
 }: VideoControlsProps): React.ReactNode {
 	return (
-		<div className='sds:flex sds:items-center sds:gap-1 md:sds:gap-2'>
+		<div
+			className={cn(
+				'sds:flex sds:items-center sds:gap-1 md:sds:gap-2',
+				className,
+			)}>
 			{/* Play/Pause */}
 			<PlayPauseButton
 				isPlaying={isPlaying}

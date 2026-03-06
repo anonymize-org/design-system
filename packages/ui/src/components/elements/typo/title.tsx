@@ -4,11 +4,11 @@ import { cva, type VariantProps } from 'class-variance-authority';
 const titleVariants = cva('tracking-tight', {
 	variants: {
 		variant: {
-			h1: 'sds:text-4xl font-bold lg:text-5xl',
-			h2: 'sds:text-2xl font-semibold md:text-3xl',
-			h3: 'sds:sm:text-2xl font-semibold sds:text-xl',
-			h4: 'sds:text-xl font-semibold',
-			h5: 'sds:text-lg font-medium',
+			h1: 'sds:text-4xl sds:font-bold sds:lg:text-5xl',
+			h2: 'sds:text-2xl sds:font-semibold sds:md:text-3xl',
+			h3: 'sds:sm:text-2xl sds:font-semibold sds:text-xl',
+			h4: 'sds:text-xl sds:font-semibold',
+			h5: 'sds:text-lg sds:font-medium',
 		},
 	},
 	defaultVariants: {

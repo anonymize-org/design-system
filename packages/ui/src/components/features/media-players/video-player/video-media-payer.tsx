@@ -1,21 +1,23 @@
 import { cn } from '@/lib/utils';
 
-import { useVideoPlayer } from './hooks/use-video-payer';
-import { VideoOverlay } from './video-player-overlay';
-import { PlayerHeadlines } from '../shared/player-headlines';
-import { ProgressBar } from '../shared/payer-progress-bar';
-import { VideoControls } from './video-player-controls';
-import { FullScreenButton } from '../shared/payer-controls-btn';
-import { Size, Variant } from '../shared/types';
+import { useVideoPlayer } from './use-video-payer';
+import { VideoOverlay } from '../../../elements/media-payers/video/video-player-overlay';
+import { PlayerHeadlines } from '../../../elements/media-payers/shared/player-headlines';
+import { ProgressBar } from '../../../elements/media-payers/shared/payer-progress-bar';
+import { VideoControls } from '../../../elements/media-payers/video/video-player-controls';
+import { FullScreenButton } from '../../../elements/media-payers/shared/payer-controls-btn';
+import { Size, Variant } from '../../../elements/media-payers/shared/types';
+import { MediaPlayerClasses } from '../types';
 
 interface VideoPlayerProps {
 	src: string;
 	poster?: string;
 	title?: string;
 	description?: string;
-	className?: string;
 	variant?: Variant;
 	size?: Size;
+	className?: string;
+	classes?: MediaPlayerClasses;
 }
 
 function VideoPlayer({
@@ -26,6 +28,7 @@ function VideoPlayer({
 	className,
 	variant = 'light',
 	size = 'md',
+	classes,
 }: VideoPlayerProps): React.ReactNode {
 	const {
 		videoRef,
@@ -51,7 +54,7 @@ function VideoPlayer({
 		<div
 			ref={containerRef}
 			className={cn(
-				'sds:group sds:relative sds:h-fit sds:min-h-80 sds:w-full sds:overflow-hidden sds:rounded-xl sds:bg-black sds:shadow-2xl',
+				'sds:group sds:relative sds:h-fit sds:w-full sds:overflow-hidden sds:rounded-xl sds:bg-black/90 sds:shadow-2xl',
 				className,
 			)}
 			onMouseEnter={() => setIsHovering(true)}
@@ -61,33 +64,37 @@ function VideoPlayer({
 				ref={videoRef}
 				src={src}
 				poster={poster}
-				className='sds:aspect-video sds:w-full'
+				className={cn(
+					'sds:aspect-video sds:min-h-60 sds:w-full sds:transition-opacity sds:duration-300 sds:sm:min-h-72 sds:lg:min-h-80',
+					isPlaying ? 'sds:opacity-100' : 'sds:opacity-70',
+					classes?.player,
+				)}
 				onClick={togglePlay}
 			/>
 
 			<VideoOverlay
 				isPlaying={isPlaying}
 				showControls={showControls}
-				onTogglePlay={togglePlay}>
+				onTogglePlay={togglePlay}
+				className={classes?.overlay}>
 				{/* Video Info */}
 				{(title ?? description) && (
-					<div
+					<PlayerHeadlines
+						title={title}
+						description={description}
 						className={cn(
 							'sds:absolute sds:top-6 sds:left-6 sds:max-w-md sds:transition-opacity sds:duration-300',
 							showControls ? 'sds:opacity-100' : 'sds:opacity-0',
-						)}>
-						<PlayerHeadlines
-							title={title}
-							description={description}
-							withBackdrop
-						/>
-					</div>
+							classes?.headlines,
+						)}
+						withBackdrop
+					/>
 				)}
 			</VideoOverlay>
 
 			<div
 				className={cn(
-					'sds:absolute sds:right-0 sds:bottom-0 sds:left-0 sds:space-y-2 sds:p-4 sds:transition-all sds:duration-300',
+					'sds:absolute sds:right-0 sds:bottom-0 sds:left-0 sds:space-y-1 sds:p-2 sds:transition-all sds:duration-300 sds:sm:space-y-2 sds:sm:p-3 sds:lg:p-4',
 					showControls
 						? 'sds:translate-y-0 sds:opacity-100'
 						: 'sds:translate-y-4 sds:opacity-0',
@@ -98,9 +105,11 @@ function VideoPlayer({
 					onSeek={handleSeek}
 					formatTime={formatTime}
 					variant={variant}
+					className={classes?.progressBar?.container}
+					classes={classes?.progressBar}
 				/>
 
-				<div className='sds:flex sds:items-center sds:justify-between sds:gap-2'>
+				<div className='sds:flex sds:items-center sds:justify-between sds:gap-1 sds:sm:gap-2'>
 					<VideoControls
 						isPlaying={isPlaying}
 						volume={volume}
@@ -111,6 +120,7 @@ function VideoPlayer({
 						onSkip={skip}
 						variant={variant}
 						size={size}
+						className={classes?.controls}
 					/>
 
 					<FullScreenButton

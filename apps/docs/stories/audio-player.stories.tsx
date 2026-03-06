@@ -1,4 +1,4 @@
-import { AudioPlayer } from '@secrecy/ui/components/elements/media-payers/audio/audio-media-payer';
+import { AudioPlayer } from '@secrecy/ui/components/features/media-players/audio-player/audio-media-payer';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof AudioPlayer> = {
@@ -22,7 +22,7 @@ type Story = StoryObj<typeof AudioPlayer>;
  */
 export const Default: Story = {
 	render: (props) => (
-		<div className='w-[500px] max-w-full'>
+		<div style={{ width: '500px', maxWidth: '100%' }}>
 			<AudioPlayer {...props} />
 		</div>
 	),
@@ -38,7 +38,7 @@ export const Default: Story = {
 
 export const WithLongTitle: Story = {
 	render: (props) => (
-		<div className='w-[500px] max-w-full'>
+		<div style={{ width: '500px', maxWidth: '100%' }}>
 			<AudioPlayer {...props} />
 		</div>
 	),
@@ -54,7 +54,7 @@ export const WithLongTitle: Story = {
 
 export const CompactWidth: Story = {
 	render: (props) => (
-		<div className='w-[350px] max-w-full'>
+		<div style={{ width: '350px', maxWidth: '100%' }}>
 			<AudioPlayer {...props} />
 		</div>
 	),
@@ -69,28 +69,13 @@ export const CompactWidth: Story = {
 
 export const WideLayout: Story = {
 	render: (props) => (
-		<div className='w-[700px] max-w-full'>
+		<div style={{ width: '700px', maxWidth: '100%' }}>
 			<AudioPlayer {...props} />
 		</div>
 	),
 	args: {
 		track: {
 			title: 'Wide Audio Player',
-			type: 'audio/mp3',
-			src: '/audio/audio-sample.mp3',
-		},
-	},
-};
-
-export const CustomStyling: Story = {
-	render: (props) => (
-		<div className='w-[500px] max-w-full'>
-			<AudioPlayer {...props} />
-		</div>
-	),
-	args: {
-		track: {
-			title: 'Custom Styled Player',
 			type: 'audio/mp3',
 			src: '/audio/audio-sample.mp3',
 		},

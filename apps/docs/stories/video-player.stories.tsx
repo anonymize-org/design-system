@@ -1,4 +1,4 @@
-import { VideoPlayer } from '@secrecy/ui/components/elements/media-payers/video/video-media-payer';
+import { VideoPlayer } from '@secrecy/ui/components/features/media-players/video-player/video-media-payer';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof VideoPlayer> = {
@@ -16,9 +16,6 @@ const meta: Meta<typeof VideoPlayer> = {
 		description: {
 			control: { type: 'text' },
 		},
-		className: {
-			control: { type: 'text' },
-		},
 	},
 	parameters: {
 		layout: 'centered',
@@ -34,7 +31,7 @@ type Story = StoryObj<typeof VideoPlayer>;
  */
 export const Default: Story = {
 	render: (props) => (
-		<div className='w-[800px] max-w-full'>
+		<div style={{ width: '800px', maxWidth: '100%' }}>
 			<VideoPlayer {...props} />
 		</div>
 	),
@@ -48,7 +45,7 @@ export const Default: Story = {
 
 export const WithPoster: Story = {
 	render: (props) => (
-		<div className='w-[800px] max-w-full'>
+		<div style={{ width: '800px', maxWidth: '100%' }}>
 			<VideoPlayer {...props} />
 		</div>
 	),
@@ -61,21 +58,9 @@ export const WithPoster: Story = {
 	},
 };
 
-export const WithoutInfo: Story = {
-	render: (props) => (
-		<div className='w-[800px] max-w-full'>
-			<VideoPlayer {...props} />
-		</div>
-	),
-	name: 'Without Title & Description',
-	args: {
-		src: '/video/sample-video.mp4',
-	},
-};
-
 export const ShortVideo: Story = {
 	render: (props) => (
-		<div className='w-[640px] max-w-full'>
+		<div style={{ width: '320px', maxWidth: '100%' }}>
 			<VideoPlayer {...props} />
 		</div>
 	),
@@ -83,20 +68,5 @@ export const ShortVideo: Story = {
 		src: '/video/sample-video.mp4',
 		title: 'Sample Video',
 		description: 'Responsive video player',
-	},
-};
-
-export const CustomWidth: Story = {
-	render: (props) => (
-		<div className='w-[600px] max-w-full'>
-			<VideoPlayer {...props} />
-		</div>
-	),
-	name: 'Custom Width Container',
-	args: {
-		src: '/video/sample-video.mp4',
-		title: 'Custom Width',
-		description: 'Video player with custom container width',
-		className: 'ring-2 ring-blue-500',
 	},
 };

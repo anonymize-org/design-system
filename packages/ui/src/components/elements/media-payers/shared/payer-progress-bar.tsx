@@ -6,13 +6,16 @@ const textClasses = {
 	dark: 'sds:text-primary-foreground/70',
 };
 
-interface ProgressBarProps {
+export interface ProgressBarProps {
 	currentTime: number;
 	duration: number;
 	onSeek: (value: number[]) => void;
 	formatTime: (time: number) => string;
 	className?: string;
-	textClassName?: string;
+	classes?: {
+		text?: string;
+		slider?: string;
+	};
 	variant?: 'light' | 'dark';
 }
 
@@ -22,7 +25,7 @@ function ProgressBar({
 	onSeek,
 	formatTime,
 	className,
-	textClassName,
+	classes,
 	variant = 'light',
 }: ProgressBarProps): React.JSX.Element {
 	return (
@@ -32,13 +35,13 @@ function ProgressBar({
 				max={duration || 100}
 				step={0.1}
 				onValueChange={onSeek}
-				className='sds:cursor-pointer'
+				className={cn('sds:cursor-pointer', classes?.slider)}
 			/>
 			<div
 				className={cn(
 					'sds:flex sds:justify-between sds:text-xs',
 					textClasses[variant],
-					textClassName,
+					classes?.text,
 				)}>
 				<span>{formatTime(currentTime)}</span>
 				<span>{formatTime(duration)}</span>
