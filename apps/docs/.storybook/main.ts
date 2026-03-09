@@ -8,6 +8,7 @@ const config: StorybookConfig = {
 		'@storybook/addon-essentials',
 		'@storybook/addon-links',
 		'@storybook/addon-themes',
+		'storybook-dark-mode',
 	],
 	viteFinal: (config) => {
 		return {
@@ -19,7 +20,7 @@ const config: StorybookConfig = {
 						find: '@secrecy/ui/components',
 						replacement: pathResolve(
 							__dirname,
-							'../../../packages/ui/dist/components'
+							'../../../packages/ui/dist/components',
 						),
 					},
 				],
