@@ -5,47 +5,48 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-	--background: hsl(0 0% 100%);
-	--foreground: hsl(0 0% 14.5%);
-	--card: hsl(0 0% 100%);
-	--card-foreground: hsl(0 0% 14.5%);
-	--popover: hsl(0 0% 100%);
-	--popover-foreground: hsl(0 0% 14.5%);
-	--primary: hsl(151.4 25.9% 33.3%);
-	--primary-foreground: hsl(0 0% 98.5%);
-	--secondary: hsl(0 0% 97%);
-	--secondary-foreground: hsl(0 0% 20.5%);
-	--muted: hsl(0 0% 97%);
-	--muted-foreground: hsl(0 0% 55.6%);
-	--accent: hsl(0 0% 97%);
-	--accent-foreground: hsl(0 0% 20.5%);
-	--destructive: hsl(0 80% 57.7%);
-	--destructive-foreground: hsl(0 0% 100%);
-	--border: hsl(0 0% 92.2%);
-	--input: hsl(0 0% 92.2%);
-	--ring: hsl(0 0% 70.8%);
-	--chart-1: hsl(41 78% 64.6%);
-	--chart-2: hsl(185 68% 60%);
-	--chart-3: hsl(227 65% 39.8%);
-	--chart-4: hsl(84 63% 82.8%);
-	--chart-5: hsl(70 68% 76.9%);
-	--sidebar: hsl(0 0% 98.5%);
-	--sidebar-foreground: hsl(0 0% 14.5%);
-	--sidebar-primary: hsl(0 0% 20.5%);
-	--sidebar-primary-foreground: hsl(0 0% 98.5%);
-	--sidebar-accent: hsl(0 0% 97%);
-	--sidebar-accent-foreground: hsl(0 0% 20.5%);
-	--sidebar-border: hsl(0 0% 92.2%);
-	--sidebar-ring: hsl(0 0% 70.8%);
-	--font-sans:
-		ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-		Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
-		'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-	--font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
-	--font-mono:
-		ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-		'Courier New', monospace;
+	--background: oklch(1 0 0);
+	--foreground: oklch(0.1448 0 0);
+	--card: oklch(1 0 0);
+	--card-foreground: oklch(0.1448 0 0);
+	--popover: oklch(1 0 0);
+	--popover-foreground: oklch(0.1448 0 0);
+	--primary: oklch(0.4628 0.0841 151.0971);
+	--primary-foreground: oklch(0.9851 0 0);
+	--secondary: oklch(0.9702 0 0);
+	--secondary-foreground: oklch(0.2046 0 0);
+	--muted: oklch(0.9702 0 0);
+	--muted-foreground: oklch(0.5555 0 0);
+	--accent: oklch(0.9702 0 0);
+	--accent-foreground: oklch(0.2046 0 0);
+	--destructive: oklch(0.583 0.2387 28.4765);
+	--destructive-foreground: oklch(1 0 0);
+	--border: oklch(0.9219 0 0);
+	--input: oklch(0.94 0 0);
+	--ring: oklch(0.4628 0.0841 151.0971);
+	--chart-1: oklch(0.962 0.044 156.743);
+	--chart-2: oklch(0.871 0.15 154.449);
+	--chart-3: oklch(0.627 0.194 149.214);
+	--chart-4: oklch(0.448 0.119 151.328);
+	--chart-5: oklch(0.262 0.051 172.552);
+	--sidebar: oklch(0.9851 0 0);
+	--sidebar-foreground: oklch(0.1448 0 0);
+	--sidebar-primary: oklch(0.2046 0 0);
+	--sidebar-primary-foreground: oklch(0.9851 0 0);
+	--sidebar-accent: oklch(0.9702 0 0);
+	--sidebar-accent-foreground: oklch(0.2046 0 0);
+	--sidebar-border: oklch(0.9219 0 0);
+	--sidebar-ring: oklch(0.709 0 0);
+	--font-sans: Outfit, sans-serif;
+	--font-serif: Lora, ui-serif, serif;
+	--font-mono: IBM Plex Mono, ui-monospace, monospace;
 	--radius: 0.625rem;
+	--shadow-x: 0;
+	--shadow-y: 1px;
+	--shadow-blur: 3px;
+	--shadow-spread: 0px;
+	--shadow-opacity: 0.1;
+	--shadow-color: oklch(0 0 0);
 	--shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
 	--shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
 	--shadow-sm:
@@ -58,50 +59,53 @@
 	--shadow-xl:
 		0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
 	--shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+	--tracking-normal: 0em;
+	--spacing: 0.25rem;
 }
 
 .dark {
-	--background: hsl(240 10% 3.9%);
-	--foreground: hsl(0 0% 98%);
-	--card: hsl(240 10% 3.9%);
-	--card-foreground: hsl(0 0% 98%);
-	--popover: hsl(240 10% 3.9%);
-	--popover-foreground: hsl(0 0% 98%);
-	--primary: hsl(0 0% 98%);
-	--primary-foreground: hsl(240 5.9% 10%);
-	--secondary: hsl(240 3.7% 15.9%);
-	--secondary-foreground: hsl(0 0% 98%);
-	--muted: hsl(240 3.7% 15.9%);
-	--muted-foreground: hsl(240 5% 64.9%);
-	--accent: hsl(240 3.7% 15.9%);
-	--accent-foreground: hsl(0 0% 98%);
-	--destructive: hsl(0 62.8% 30.6%);
-	--destructive-foreground: hsl(0 85.7% 97.3%);
-	--border: hsl(240 3.7% 15.9%);
-	--input: hsl(240 3.7% 15.9%);
-	--ring: hsl(240 4.9% 83.9%);
-	--chart-1: hsl(220 70% 50%);
-	--chart-2: hsl(160 60% 45%);
-	--chart-3: hsl(30 80% 55%);
-	--chart-4: hsl(280 65% 60%);
-	--chart-5: hsl(340 75% 55%);
-	--sidebar: hsl(240 5.9% 10%);
-	--sidebar-foreground: hsl(240 4.8% 95.9%);
-	--sidebar-primary: hsl(224.3 76.3% 48%);
-	--sidebar-primary-foreground: hsl(0 0% 100%);
-	--sidebar-accent: hsl(240 3.7% 15.9%);
-	--sidebar-accent-foreground: hsl(240 4.8% 95.9%);
-	--sidebar-border: hsl(240 3.7% 15.9%);
-	--sidebar-ring: hsl(240 4.9% 83.9%);
-	--font-sans:
-		ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-		Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
-		'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-	--font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
-	--font-mono:
-		ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-		'Courier New', monospace;
+	--background: oklch(0.1448 0 0);
+	--foreground: oklch(0.9851 0 0);
+	--card: oklch(0.2046 0 0);
+	--card-foreground: oklch(0.9851 0 0);
+	--popover: oklch(0.2686 0 0);
+	--popover-foreground: oklch(0.9851 0 0);
+	--primary: oklch(0.5897 0.1135 156.7427);
+	--primary-foreground: oklch(0.9213 0.0135 167.1556);
+	--secondary: oklch(0.2686 0 0);
+	--secondary-foreground: oklch(0.9851 0 0);
+	--muted: oklch(0.2686 0 0);
+	--muted-foreground: oklch(0.709 0 0);
+	--accent: oklch(0.3715 0 0);
+	--accent-foreground: oklch(0.9851 0 0);
+	--destructive: oklch(0.7022 0.1892 22.2279);
+	--destructive-foreground: oklch(0.9851 0 0);
+	--border: oklch(0.2768 0 0);
+	--input: oklch(0.325 0 0);
+	--ring: oklch(0.5555 0 0);
+	--chart-1: oklch(0.962 0.044 156.743);
+	--chart-2: oklch(0.871 0.15 154.449);
+	--chart-3: oklch(0.627 0.194 149.214);
+	--chart-4: oklch(0.448 0.119 151.328);
+	--chart-5: oklch(0.262 0.051 172.552);
+	--sidebar: oklch(0.2046 0 0);
+	--sidebar-foreground: oklch(0.9851 0 0);
+	--sidebar-primary: oklch(0.5897 0.1135 156.7427);
+	--sidebar-primary-foreground: oklch(0.9851 0 0);
+	--sidebar-accent: oklch(0.2686 0 0);
+	--sidebar-accent-foreground: oklch(0.9851 0 0);
+	--sidebar-border: oklch(0.2768 0 0);
+	--sidebar-ring: oklch(0.4386 0 0);
+	--font-sans: Outfit, sans-serif;
+	--font-serif: Lora, ui-serif, serif;
+	--font-mono: IBM Plex Mono, ui-monospace, monospace;
 	--radius: 0.625rem;
+	--shadow-x: 0;
+	--shadow-y: 1px;
+	--shadow-blur: 3px;
+	--shadow-spread: 0px;
+	--shadow-opacity: 0.1;
+	--shadow-color: oklch(0 0 0);
 	--shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
 	--shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
 	--shadow-sm:
@@ -174,6 +178,6 @@
 		@reference border-border outline-ring/50;
 	}
 	body {
-		@reference bg-background text-foreground;
+		@reference bg-background text-foreground font-sans;
 	}
 }
