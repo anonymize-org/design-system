@@ -180,4 +180,7 @@
 	body {
 		@reference bg-background text-foreground font-sans;
 	}
+	button {
+		@reference cursor-pointer;
+	}
 }

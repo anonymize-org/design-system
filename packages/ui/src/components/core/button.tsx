@@ -5,21 +5,21 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-	'sds:inline-flex sds:items-center sds:justify-center sds:gap-2 sds:whitespace-nowrap sds:rounded-md sds:text-sm sds:font-medium sds:transition-all disabled:sds:pointer-events-none disabled:sds:opacity-50 [&_svg]:sds:pointer-events-none [&_svg:not([class*=size-])]:sds:size-4 sds:shrink-0 [&_svg]:sds:shrink-0 sds:outline-none focus-visible:sds:border-ring focus-visible:sds:ring-ring/50 focus-visible:sds:ring-[3px] aria-invalid:sds:ring-destructive/20 dark:aria-invalid:sds:ring-destructive/40 aria-invalid:sds:border-destructive',
+	'sds:inline-flex sds:items-center sds:justify-center sds:gap-2 sds:whitespace-nowrap sds:rounded-md sds:text-sm sds:font-medium sds:transition-all sds:disabled:pointer-events-none sds:disabled:opacity-50 sds:[&_svg]:pointer-events-none sds:[&_svg:not([class*=size-])]:size-4 sds:shrink-0 sds:[&_svg]:shrink-0 sds:outline-none sds:focus-visible:border-ring sds:focus-visible:ring-ring/50 sds:focus-visible:ring-[3px] sds:aria-invalid:ring-destructive/20 sds:dark:aria-invalid:ring-destructive/40 sds:aria-invalid:border-destructive',
 	{
 		variants: {
 			variant: {
 				default:
-					'sds:bg-primary sds:text-primary-foreground sds:shadow-xs hover:sds:bg-primary/90',
+					'sds:bg-primary sds:text-primary-foreground sds:shadow-xs sds:hover:bg-primary/90',
 				destructive:
-					'sds:bg-destructive sds:text-white sds:shadow-xs hover:sds:bg-destructive/90 focus-visible:sds:ring-destructive/20 dark:focus-visible:sds:ring-destructive/40 dark:sds:bg-destructive/60',
+					'sds:bg-destructive sds:text-white sds:shadow-xs sds:hover:bg-destructive/90 sds:focus-visible:ring-destructive/20 sds:dark:focus-visible:ring-destructive/40 sds:dark:bg-destructive/60',
 				outline:
-					'sds:border sds:bg-background sds:shadow-xs hover:sds:bg-accent hover:sds:text-accent-foreground dark:sds:bg-input/30 dark:sds:border-input dark:hover:sds:bg-input/50',
+					'sds:border sds:bg-background sds:shadow-xs sds:hover:bg-accent sds:hover:text-accent-foreground sds:dark:bg-input/30 sds:dark:border-input sds:dark:hover:bg-input/50',
 				secondary:
-					'sds:bg-secondary sds:text-secondary-foreground sds:shadow-xs hover:sds:bg-secondary/80',
+					'sds:bg-secondary sds:text-secondary-foreground sds:shadow-xs sds:hover:bg-secondary/80',
 				ghost:
-					'hover:sds:bg-accent hover:sds:text-accent-foreground dark:hover:sds:bg-accent/50',
-				link: 'sds:text-primary sds:underline-offset-4 hover:sds:underline',
+					'sds:hover:bg-accent sds:hover:text-accent-foreground sds:dark:hover:bg-accent/50',
+				link: 'sds:text-primary sds:underline-offset-4 sds:hover:underline',
 			},
 			size: {
 				default: 'sds:h-9 sds:px-4 sds:py-2 sds:has-[>svg]:px-3',
