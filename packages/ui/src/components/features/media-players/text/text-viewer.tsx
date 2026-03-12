@@ -28,7 +28,7 @@ function TextFileViewer({
 	const { text, linesCount, lines, error } = useTextFileContent(file);
 
 	if (error) {
-		return fallback ?? <FileErrorFallback withDescription />;
+		return fallback ?? <FileErrorFallback />;
 	}
 
 	return (

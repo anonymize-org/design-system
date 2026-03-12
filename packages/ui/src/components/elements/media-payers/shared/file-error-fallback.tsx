@@ -8,23 +8,22 @@ import { FileQuestion } from 'lucide-react';
 import React from 'react';
 
 interface FileErrorFallbackProps {
-	withDescription?: boolean;
+	message?: string;
 }
 
 function FileErrorFallback({
-	withDescription,
+	message = 'Failed to load file content',
 }: FileErrorFallbackProps): React.ReactNode {
 	return (
 		<Empty>
 			<EmptyHeader>
-				<EmptyMedia variant='icon'>
+				<EmptyMedia
+					variant='icon'
+					className='sds:bg-destructive/5 sds:text-destructive'>
 					<FileQuestion />
 				</EmptyMedia>
-				{withDescription && (
-					<EmptyDescription className='sds:text-sm'>
-						Failed to load file content
-					</EmptyDescription>
-				)}
+
+				<EmptyDescription className='sds:text-sm'>{message}</EmptyDescription>
 			</EmptyHeader>
 		</Empty>
 	);
