@@ -10,7 +10,7 @@ function FileViewLabel({
 	return (
 		<span
 			className={cn(
-				'sds:truncate sds:font-mono sds:text-zinc-700',
+				'sds:truncate sds:font-mono sds:text-accent-foreground/80 sds:text-sm sds:sm:text-base',
 				props.className,
 			)}
 			{...props}>

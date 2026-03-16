@@ -3,13 +3,14 @@ import { cn } from '@/lib/utils';
 export interface ImageViewerProps {
 	fileUrl: string;
 	zoom?: number;
-	sizeMode?: 'compact' | 'medium' | 'full';
+	sizeMode?: 'compact' | 'medium' | 'large' | 'full';
 }
 
 const sizeClasses: Record<NonNullable<ImageViewerProps['sizeMode']>, string> = {
 	compact: 'sds:h-64 sds:w-80 sds:sm:h-72 sds:sm:w-96',
 	medium: 'sds:h-80 sds:w-full sds:max-w-4xl sds:sm:h-96 sds:lg:h-[32rem]',
-	full: 'sds:h-[85vh] sds:w-full sds:max-w-7xl',
+	large: 'sds:h-[85vh] sds:w-full sds:max-w-7xl',
+	full: 'sds:h-screen sds:w-full',
 };
 
 function ImageViewerFrame({
@@ -46,7 +47,7 @@ function ImageContentViewer({
 			src={fileUrl}
 			alt='File preview'
 			className={cn(
-				'sds:h-full sds:w-full sds:object-contain sds:transition-transform sds:duration-150',
+				'sds:h-full sds:w-full sds:object-contain sds:transition-transform sds:duration-150 sds:drop-shadow-2xl',
 				className,
 			)}
 			style={{ transform: `scale(${zoom / 100})`, ...style }}

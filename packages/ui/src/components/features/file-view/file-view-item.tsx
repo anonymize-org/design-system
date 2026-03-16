@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import {
 	FileView,
 	FileViewIconProps,
-} from '../../elements/file-view/file-view-item-elements';
+} from '../../elements/file-view/item-file-view/file-view-item-elements';
 import { getTailwindClass } from './utils/file-color';
 import { getFontSizeClass, getSizeValue, Size } from './utils/file-size-ui';
 

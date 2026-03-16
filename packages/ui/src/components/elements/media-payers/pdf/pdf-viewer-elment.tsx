@@ -2,12 +2,13 @@ import { cn } from '@/lib/utils';
 
 interface FildPdfViewerProps {
 	fileUrl: string;
-	title?: string;
+	fullScreen?: boolean;
 }
 
 function PDFFileViewerUI({
 	fileUrl,
-	title = 'PDF Viewer',
+	fullScreen,
+
 	className,
 	...iframeProps
 }: FildPdfViewerProps & React.ComponentProps<'iframe'>) {
@@ -15,10 +16,12 @@ function PDFFileViewerUI({
 		<iframe
 			src={fileUrl}
 			className={cn(
-				'sds:h-[50vh] sds:min-h-80 sds:w-full sds:border-0 sds:sm:h-[60vh] sds:md:h-[70vh] sds:lg:h-[75vh]',
+				'sds:lg:w-90% sds:min-h-80 sds:w-full  sds:border-0 sds:sm:h-[50vh] sds:md:h-[70vh] sds:lg:h-[75vh] sds:rounded',
+				fullScreen && 'sds:lg:h-screen sds:lg:w-full sds:rounded-none',
 				className,
 			)}
-			title={title}
+			height='100%'
+			width='100%'
 			{...iframeProps}
 		/>
 	);
