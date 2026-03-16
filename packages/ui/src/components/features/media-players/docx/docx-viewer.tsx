@@ -5,15 +5,15 @@ import { FileErrorFallback } from '@/components/elements/media-payers/shared/fil
 import SpinnerLoader from '@/components/loader/spinner';
 
 interface DocxViewerProps {
-	src: string;
+	file: File;
 	className?: string;
 	classes?: {
 		docx?: string;
 	};
 }
 
-function DocxViewer({ src, className, classes }: DocxViewerProps) {
-	const { html, error } = useDocxViewer(src);
+function DocxViewer({ file, className, classes }: DocxViewerProps) {
+	const { html, error } = useDocxViewer(file);
 
 	if (error) {
 		return <FileErrorFallback message={error} />;

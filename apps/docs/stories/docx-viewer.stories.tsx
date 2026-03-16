@@ -1,13 +1,18 @@
 import { DocxViewer } from '@secrecy/ui/components/features/media-players/docx/docx-viewer';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-const meta: Meta<typeof DocxViewer> = {
-	component: DocxViewer,
+type DocxViewerStoryArgs = {
+	src: string;
+	fileName: string;
+};
+
+const meta: Meta<DocxViewerStoryArgs> = {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	component: DocxViewer as any,
 	title: 'Media Players/DOCX Viewer',
 	argTypes: {
-		src: {
-			control: { type: 'text' },
-		},
+		src: { control: { type: 'text' } },
+		fileName: { control: { type: 'text' } },
 	},
 	parameters: {
 		layout: 'centered',
@@ -16,30 +21,40 @@ const meta: Meta<typeof DocxViewer> = {
 
 export default meta;
 
-type Story = StoryObj<typeof DocxViewer>;
+type Story = StoryObj<DocxViewerStoryArgs>;
 
 /*
  * Local sample DOCX - served from public/docx/sample-docx.docx
  */
 export const Default: Story = {
-	render: (props) => (
-		<>
-			<DocxViewer {...props} />
-		</>
-	),
+	loaders: [
+		async ({ args }) => ({
+			file: await fetch(args.src)
+				.then((r) => r.blob())
+				.then(
+					(blob) =>
+						new File([blob], args.fileName, {
+							type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+						}),
+				),
+		}),
+	],
+	render: (_props, { loaded: { file } }) => <DocxViewer file={file as File} />,
 	name: 'DOCX Viewer',
 	args: {
 		src: '/docx/sample-docx.docx',
+		fileName: 'sample-docx.docx',
 	},
 };
 
 export const ErrorState: Story = {
-	render: (props) => (
-		<>
-			<DocxViewer {...props} />
-		</>
+	render: () => (
+		<DocxViewer
+			file={
+				new File(['this is not a valid docx file'], 'invalid.docx', {
+					type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+				})
+			}
+		/>
 	),
-	args: {
-		src: '/docx/does-not-exist.docx',
-	},
 };

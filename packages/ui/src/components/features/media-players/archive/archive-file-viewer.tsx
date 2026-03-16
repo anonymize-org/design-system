@@ -8,11 +8,10 @@ import { ARCHIVE_EXTENSIONS, getArchiveIcon } from './helper';
 import { cn } from '@/lib/utils';
 import { TooltipUI } from '@/components/elements/tooltip-ui';
 import { TooltipProvider } from '@/components/core/tooltip';
+import { getFileExtension, toHuman } from '../audio-player/utils/file';
 
 interface ArchiveFileViewerProps {
-	extension: string;
-	fileName: string;
-	fileSize: string;
+	file: File;
 	className?: string;
 	classes?: {
 		icon?: string;
@@ -23,15 +22,17 @@ interface ArchiveFileViewerProps {
 }
 
 function ArchiveFileViewer({
-	extension,
-	fileName,
-	fileSize,
+	file,
 	className,
 	classes,
 }: ArchiveFileViewerProps): React.ReactNode {
+	const extension = getFileExtension(file.name);
+	const fileName = file.name;
+	const fileSize = toHuman(file.size);
 	const bgColor = ARCHIVE_EXTENSIONS[extension]?.color || 'sds:bg-gray-500';
 	const label = ARCHIVE_EXTENSIONS[extension]?.label || extension.toUpperCase();
 	const IconComponent = getArchiveIcon(extension);
+
 	return (
 		<div className={cn('sds:flex sds:gap-2', className)}>
 			<ArchiveFileIcon

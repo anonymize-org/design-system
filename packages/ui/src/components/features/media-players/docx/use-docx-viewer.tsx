@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import type Mammoth from 'mammoth';
 
-const useDocxViewer = (src: string) => {
+const useDocxViewer = (file: File) => {
 	const [html, setHtml] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -14,6 +14,7 @@ const useDocxViewer = (src: string) => {
 			setError(null);
 
 			try {
+				const src = URL.createObjectURL(file);
 				const response = await fetch(src);
 				const mammoth = (await import('mammoth')) as typeof Mammoth;
 
@@ -47,7 +48,7 @@ const useDocxViewer = (src: string) => {
 		return () => {
 			isMounted = false;
 		};
-	}, [src]);
+	}, [file]);
 
 	return { html, error, isLoading };
 };

@@ -3,33 +3,32 @@ import { cn } from '@/lib/utils';
 import { useVideoPlayer } from './use-video-payer';
 import { VideoOverlay } from '../../../elements/media-payers/video/video-player-overlay';
 import { PlayerHeadlines } from '../../../elements/media-payers/shared/player-headlines';
-import { ProgressBar } from '../../../elements/media-payers/shared/payer-progress-bar';
+import { ProgressBar } from '../../../elements/media-payers/shared/player-progress-bar';
 import { VideoControls } from '../../../elements/media-payers/video/video-player-controls';
-import { FullScreenButton } from '../../../elements/media-payers/shared/payer-controls-btn';
+import { FullScreenButton } from '../../../elements/media-payers/shared/player-controls-btn';
 import { Size, Variant } from '../../../elements/media-payers/shared/types';
 import { MediaPlayerClasses } from '../types';
+import { useFileUrl } from '../hooks/use-file-url';
+import SpinnerLoader from '@/components/loader/spinner';
 
 interface VideoPlayerProps {
-	src: string;
-	poster?: string;
-	title?: string;
-	description?: string;
+	file: File;
 	variant?: Variant;
 	size?: Size;
 	className?: string;
 	classes?: MediaPlayerClasses;
+	videoProps?: React.ComponentProps<'video'>;
 }
 
 function VideoPlayer({
-	src,
-	poster,
-	title,
-	description,
+	file,
 	className,
 	variant = 'light',
 	size = 'md',
 	classes,
+	videoProps,
 }: VideoPlayerProps): React.ReactNode {
+	const fileUrl = useFileUrl(file);
 	const {
 		videoRef,
 		containerRef,
@@ -50,6 +49,10 @@ function VideoPlayer({
 		formatTime,
 	} = useVideoPlayer();
 
+	if (!fileUrl) {
+		return <SpinnerLoader />;
+	}
+
 	return (
 		<div
 			ref={containerRef}
@@ -62,14 +65,14 @@ function VideoPlayer({
 			{/* Video Element */}
 			<video
 				ref={videoRef}
-				src={src}
-				poster={poster}
+				src={fileUrl}
 				className={cn(
 					'sds:aspect-video sds:min-h-60 sds:w-full sds:transition-opacity sds:duration-300 sds:sm:min-h-72 sds:lg:min-h-80',
 					isPlaying ? 'sds:opacity-100' : 'sds:opacity-70',
 					classes?.player,
 				)}
 				onClick={togglePlay}
+				{...videoProps}
 			/>
 
 			<VideoOverlay
@@ -78,18 +81,16 @@ function VideoPlayer({
 				onTogglePlay={togglePlay}
 				className={classes?.overlay}>
 				{/* Video Info */}
-				{(title ?? description) && (
-					<PlayerHeadlines
-						title={title}
-						description={description}
-						className={cn(
-							'sds:absolute sds:top-6 sds:left-6 sds:max-w-md sds:transition-opacity sds:duration-300',
-							showControls ? 'sds:opacity-100' : 'sds:opacity-0',
-							classes?.headlines,
-						)}
-						withBackdrop
-					/>
-				)}
+				<PlayerHeadlines
+					title={file.name}
+					description={file.type}
+					className={cn(
+						'sds:absolute sds:top-6 sds:left-6 sds:max-w-md sds:transition-opacity sds:duration-300',
+						showControls ? 'sds:opacity-100' : 'sds:opacity-0',
+						classes?.headlines,
+					)}
+					withBackdrop
+				/>
 			</VideoOverlay>
 
 			<div

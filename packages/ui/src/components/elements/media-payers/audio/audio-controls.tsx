@@ -3,7 +3,7 @@ import {
 	PlayPauseButton,
 	SkipButton,
 	VolumeControl,
-} from '../shared/payer-controls-btn';
+} from '../shared/player-controls-btn';
 import { Size, Variant } from '../shared/types';
 
 interface AudioControlsProps {
