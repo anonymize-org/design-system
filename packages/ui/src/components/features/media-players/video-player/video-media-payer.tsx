@@ -8,11 +8,13 @@ import { VideoControls } from '../../../elements/media-payers/video/video-player
 import { FullScreenButton } from '../../../elements/media-payers/shared/player-controls-btn';
 import { Size, Variant } from '../../../elements/media-payers/shared/types';
 import { MediaPlayerClasses } from '../types';
-import { useFileUrl } from '../hooks/use-file-url';
-import SpinnerLoader from '@/components/loader/spinner';
+import React from 'react';
+import { VideoPlayerFrame } from '@/components/elements/media-payers/video/video-player-frame';
 
 interface VideoPlayerProps {
-	file: File;
+	fileUrl: string;
+	fileName: string;
+	fileType: string;
 	variant?: Variant;
 	size?: Size;
 	className?: string;
@@ -21,14 +23,15 @@ interface VideoPlayerProps {
 }
 
 function VideoPlayer({
-	file,
+	fileUrl,
+	fileName,
+	fileType,
 	className,
 	variant = 'light',
 	size = 'md',
 	classes,
 	videoProps,
 }: VideoPlayerProps): React.ReactNode {
-	const fileUrl = useFileUrl(file);
 	const {
 		videoRef,
 		containerRef,
@@ -49,25 +52,18 @@ function VideoPlayer({
 		formatTime,
 	} = useVideoPlayer();
 
-	if (!fileUrl) {
-		return <SpinnerLoader />;
-	}
-
 	return (
-		<div
+		<VideoPlayerFrame
 			ref={containerRef}
-			className={cn(
-				'sds:group sds:relative sds:h-fit sds:w-full sds:overflow-hidden sds:rounded-xl sds:bg-black/90 sds:shadow-2xl',
-				className,
-			)}
 			onMouseEnter={() => setIsHovering(true)}
-			onMouseLeave={() => setIsHovering(false)}>
+			onMouseLeave={() => setIsHovering(false)}
+			className={className}>
 			{/* Video Element */}
 			<video
 				ref={videoRef}
 				src={fileUrl}
 				className={cn(
-					'sds:aspect-video sds:min-h-60 sds:w-full sds:transition-opacity sds:duration-300 sds:sm:min-h-72 sds:lg:min-h-80',
+					'sds:aspect-video sds:transition-opacity sds:duration-300',
 					isPlaying ? 'sds:opacity-100' : 'sds:opacity-70',
 					classes?.player,
 				)}
@@ -82,8 +78,8 @@ function VideoPlayer({
 				className={classes?.overlay}>
 				{/* Video Info */}
 				<PlayerHeadlines
-					title={file.name}
-					description={file.type}
+					title={fileName}
+					description={fileType}
 					className={cn(
 						'sds:absolute sds:top-6 sds:left-6 sds:max-w-md sds:transition-opacity sds:duration-300',
 						showControls ? 'sds:opacity-100' : 'sds:opacity-0',
@@ -132,7 +128,7 @@ function VideoPlayer({
 					/>
 				</div>
 			</div>
-		</div>
+		</VideoPlayerFrame>
 	);
 }
 

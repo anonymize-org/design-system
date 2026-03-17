@@ -6,27 +6,30 @@ import { AudioOverlay } from '../../../elements/media-payers/audio/audio-overlay
 import { useAudioPlayer } from './use-audio-payer';
 import { cn } from '@/lib/utils';
 import { MediaPlayerClasses } from '../types';
-import { useFileUrl } from '../hooks/use-file-url';
-import SpinnerLoader from '@/components/loader/spinner';
 
 interface AudioPlayerProps {
-	file: File;
+	fileName: string;
+	fileUrl: string;
+	fileType: string;
 	variant?: Variant;
 	size?: Size;
 	className?: string;
 	classes?: MediaPlayerClasses;
 	audioProps?: React.AudioHTMLAttributes<HTMLAudioElement>;
+	fullScreen?: boolean;
 }
 
 function AudioPlayer({
-	file,
+	fileName,
+	fileUrl,
+	fileType,
 	variant = 'dark',
 	size = 'sm',
 	className,
 	classes,
 	audioProps,
+	fullScreen = false,
 }: AudioPlayerProps) {
-	const fileUrl = useFileUrl(file);
 	const {
 		audioRef,
 		currentTime,
@@ -42,14 +45,15 @@ function AudioPlayer({
 		skip,
 	} = useAudioPlayer();
 
-	if (!fileUrl) {
-		return <SpinnerLoader />;
-	}
-
 	return (
 		<div className={className}>
 			{/* Main Player Card */}
-			<AudioOverlay className={classes?.overlay}>
+			<AudioOverlay
+				className={classes?.overlay}
+				fullScreen={fullScreen}
+				classes={{
+					content: 'sds:flex sds:flex-col sds:justify-between',
+				}}>
 				<audio
 					ref={audioRef}
 					src={fileUrl}
@@ -59,40 +63,36 @@ function AudioPlayer({
 
 				{/* Album Art and Track Info */}
 				<PlayerHeadlines
-					title={file.name}
-					description={file.type}
-					className={cn(
-						'sds:mb-4 sds:min-h-24 sds:sm:mb-6 sds:sm:min-h-32 sds:md:mb-8 sds:md:min-h-40',
-						classes?.headlines,
-					)}
+					title={fileName}
+					description={fileType}
+					className={cn('sds:min-h-40 sds:sm:min-h-56', classes?.headlines)}
 				/>
 
-				<ProgressBar
-					className={cn(
-						'sds:mb-4 sds:space-y-1 sds:sm:space-y-2 ',
-						classes?.progressBar?.container,
-					)}
-					classes={classes?.progressBar}
-					duration={duration || 100}
-					currentTime={currentTime}
-					formatTime={formatTime}
-					onSeek={handleSeek}
-					variant={variant}
-				/>
+				<div className='sds:flex sds:w-full sds:flex-col sds:items-center sds:justify-center sds:space-y-4'>
+					<ProgressBar
+						className={cn('sds:w-full', classes?.progressBar?.container)}
+						classes={classes?.progressBar}
+						duration={duration || 100}
+						currentTime={currentTime}
+						formatTime={formatTime}
+						onSeek={handleSeek}
+						variant={variant}
+					/>
 
-				{/* Controls */}
-				<AudioControls
-					isPlaying={isPlaying}
-					volume={volume}
-					isMuted={isMuted}
-					onTogglePlay={togglePlay}
-					onVolumeChange={handleVolumeChange}
-					onToggleMute={toggleMute}
-					variant={variant}
-					size={size}
-					onSkip={skip}
-					className={classes?.controls}
-				/>
+					{/* Controls */}
+					<AudioControls
+						isPlaying={isPlaying}
+						volume={volume}
+						isMuted={isMuted}
+						onTogglePlay={togglePlay}
+						onVolumeChange={handleVolumeChange}
+						onToggleMute={toggleMute}
+						variant={variant}
+						size={size}
+						onSkip={skip}
+						className={cn('sds:w-full', classes?.controls)}
+					/>
+				</div>
 			</AudioOverlay>
 		</div>
 	);

@@ -3,15 +3,17 @@ import {
 	ArchiveFileDescription,
 	ArchiveFileIcon,
 	ArchiveFileTitle,
+	ArchiveFileWrapper,
 } from '@/components/elements/media-payers/archive/archive-viewer-elements';
 import { ARCHIVE_EXTENSIONS, getArchiveIcon } from './helper';
 import { cn } from '@/lib/utils';
 import { TooltipUI } from '@/components/elements/tooltip-ui';
 import { TooltipProvider } from '@/components/core/tooltip';
-import { getFileExtension, toHuman } from '../audio-player/utils/file';
+import { getFileExtension } from '../audio-player/utils/file';
 
 interface ArchiveFileViewerProps {
-	file: File;
+	fileName: string;
+	fileSize: string;
 	className?: string;
 	classes?: {
 		icon?: string;
@@ -22,19 +24,22 @@ interface ArchiveFileViewerProps {
 }
 
 function ArchiveFileViewer({
-	file,
+	fileName,
+	fileSize,
 	className,
 	classes,
 }: ArchiveFileViewerProps): React.ReactNode {
-	const extension = getFileExtension(file.name);
-	const fileName = file.name;
-	const fileSize = toHuman(file.size);
+	const extension = getFileExtension(fileName);
 	const bgColor = ARCHIVE_EXTENSIONS[extension]?.color || 'sds:bg-gray-500';
 	const label = ARCHIVE_EXTENSIONS[extension]?.label || extension.toUpperCase();
 	const IconComponent = getArchiveIcon(extension);
 
 	return (
-		<div className={cn('sds:flex sds:gap-2', className)}>
+		<ArchiveFileWrapper
+			className={cn(
+				'sds:bg-background sds:border-border sds:flex sds:h-fit sds:w-fit sds:gap-2 sds:rounded-2xl sds:border sds:p-6 sds:shadow-xs',
+				className,
+			)}>
 			<ArchiveFileIcon
 				className={cn(bgColor, classes?.icon)}
 				IconComponent={IconComponent}
@@ -64,7 +69,7 @@ function ArchiveFileViewer({
 					className={cn('sds:hidden sds:sm:block', classes?.description)}
 				/>
 			</div>
-		</div>
+		</ArchiveFileWrapper>
 	);
 }
 

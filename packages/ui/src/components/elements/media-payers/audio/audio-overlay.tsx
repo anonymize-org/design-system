@@ -1,18 +1,44 @@
 import { cn } from '@/lib/utils';
+import { cva } from 'class-variance-authority';
+
+const AudioOverlayVariants = cva(
+	'sds:via-primary/50 sds:to-primary sds:from-primary/25 sds:overflow-hidden sds:bg-radial sds:backdrop-blur-sm',
+	{
+		variants: {
+			fullScreen: {
+				true: 'sds:h-screen sds:w-full sds:rounded-none',
+				false: 'sds:h-fit sds:w-full sds:rounded-xl sds:shadow',
+			},
+		},
+		defaultVariants: {
+			fullScreen: false,
+		},
+	},
+);
+
+interface AudioOverlayProps extends React.ComponentPropsWithoutRef<'div'> {
+	classes?: {
+		content?: string;
+	};
+	fullScreen?: boolean;
+}
 
 function AudioOverlay({
 	children,
 	className,
+	classes,
+	fullScreen = false,
 	...props
-}: React.ComponentPropsWithoutRef<'div'>) {
+}: AudioOverlayProps): React.ReactNode {
 	return (
 		<div
-			className={cn(
-				'sds:via-primary/50 sds:to-primary sds:from-primary/25 sds:relative sds:overflow-hidden sds:rounded-xl sds:bg-radial sds:shadow-2xl sds:backdrop-blur-sm',
-				className,
-			)}
+			className={cn(AudioOverlayVariants({ fullScreen }), className)}
 			{...props}>
-			<div className='sds:relative sds:p-2 sds:sm:p-4 sds:md:p-8 sds:lg:p-10'>
+			<div
+				className={cn(
+					'sds:relative sds:h-full sds:w-full sds:p-4 sds:md:p-8',
+					classes?.content,
+				)}>
 				{children}
 			</div>
 		</div>

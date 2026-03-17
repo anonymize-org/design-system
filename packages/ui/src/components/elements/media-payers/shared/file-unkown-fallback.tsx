@@ -6,6 +6,8 @@ import {
 	EmptyTitle,
 	EmptyDescription,
 } from '@/components/core/empty';
+import { cn } from '@/lib/utils';
+
 import { FileQuestion } from 'lucide-react';
 
 interface FileUnknownFallbackProps {
@@ -22,7 +24,11 @@ function FileUnknownFallback({
 	className,
 }: FileUnknownFallbackProps): React.ReactNode {
 	return (
-		<Empty className={className}>
+		<Empty
+			className={cn(
+				'sds:bg-background sds:border-border sds:w-fit sds:border-solid sds:shadow-xs',
+				className,
+			)}>
 			<EmptyHeader>
 				<EmptyMedia variant='icon' className='sds:bg-muted '>
 					<FileQuestion />

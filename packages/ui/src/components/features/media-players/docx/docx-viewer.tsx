@@ -1,18 +1,22 @@
-import { DocxViewerHtml } from '@/components/elements/media-payers/docx/docx-viewer-html';
+import {
+	DocxViewerFrame,
+	DocxViewerHtml,
+} from '@/components/elements/media-payers/docx/docx-viewer-html';
 import { useDocxViewer } from './use-docx-viewer';
-import { cn } from '@/lib/utils';
+
 import { FileErrorFallback } from '@/components/elements/media-payers/shared/file-error-fallback';
 import SpinnerLoader from '@/components/loader/spinner';
 
 interface DocxViewerProps {
 	file: File;
+	fullScreen?: boolean;
 	className?: string;
 	classes?: {
 		docx?: string;
 	};
 }
 
-function DocxViewer({ file, className, classes }: DocxViewerProps) {
+function DocxViewer({ file, className, classes, fullScreen }: DocxViewerProps) {
 	const { html, error } = useDocxViewer(file);
 
 	if (error) {
@@ -24,10 +28,9 @@ function DocxViewer({ file, className, classes }: DocxViewerProps) {
 	}
 
 	return (
-		<div
-			className={cn('sds:w-full sds:max-w-5xl sds:min-w-0 sds:p-4', className)}>
+		<DocxViewerFrame className={className} fullScreen={fullScreen}>
 			<DocxViewerHtml html={html} className={classes?.docx} />
-		</div>
+		</DocxViewerFrame>
 	);
 }
 

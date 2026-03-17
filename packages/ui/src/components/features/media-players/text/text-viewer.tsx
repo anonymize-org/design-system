@@ -3,8 +3,8 @@ import { useTextFileContent } from './use-text-content';
 import {
 	TextLineContentPre,
 	TextLineContentCount,
+	TextFileViewerFrame,
 } from '@/components/elements/media-payers/text/text-file-content';
-import { cn } from '@/lib/utils';
 import { FileErrorFallback } from '@/components/elements/media-payers/shared/file-error-fallback';
 import SpinnerLoader from '@/components/loader/spinner';
 
@@ -17,6 +17,7 @@ interface TextFileViewerProps {
 		content?: string;
 	};
 	fallback?: React.ReactNode;
+	fullScreen?: boolean;
 }
 
 function TextFileViewer({
@@ -24,6 +25,7 @@ function TextFileViewer({
 	className,
 	classes,
 	fallback,
+	fullScreen = false,
 }: TextFileViewerProps): React.ReactNode {
 	const { text, linesCount, lines, error } = useTextFileContent(file);
 
@@ -32,7 +34,7 @@ function TextFileViewer({
 	}
 
 	return (
-		<div className={cn('sds:flex', className)}>
+		<TextFileViewerFrame className={className} fullScreen={fullScreen}>
 			{lines && (
 				<TextLineNumberList lines={lines} className={classes?.lineNumbers} />
 			)}
@@ -50,7 +52,7 @@ function TextFileViewer({
 			) : (
 				<SpinnerLoader />
 			)}
-		</div>
+		</TextFileViewerFrame>
 	);
 }
 

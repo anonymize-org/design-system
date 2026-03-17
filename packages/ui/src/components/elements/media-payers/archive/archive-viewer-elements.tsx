@@ -84,9 +84,17 @@ function ArchiveFileDescription({
 	);
 }
 
+function ArchiveFileWrapper({
+	children,
+	className,
+}: React.ComponentProps<'div'>): React.ReactNode {
+	return <div className={className}>{children}</div>;
+}
+
 export {
 	ArchiveFileBadge,
 	ArchiveFileDescription,
 	ArchiveFileIcon,
 	ArchiveFileTitle,
+	ArchiveFileWrapper,
 };

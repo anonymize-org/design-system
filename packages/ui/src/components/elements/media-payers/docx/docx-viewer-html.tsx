@@ -1,4 +1,31 @@
 import { cn } from '@/lib/utils';
+import { cva } from 'class-variance-authority';
+
+const FrameVarians = cva('sds:bg-background sds:min-w-0 sds:p-4 lg:sds:p-8', {
+	variants: {
+		fullScreen: {
+			true: 'sds:h-full sds:w-full sds:overflow-auto sds:rounded-none',
+			false: 'sds:h-fit sds:w-full sds:rounded sds:shadow',
+		},
+	},
+	defaultVariants: {
+		fullScreen: false,
+	},
+});
+
+function DocxViewerFrame({
+	children,
+	className,
+	fullScreen = false,
+}: React.ComponentProps<'div'> & {
+	fullScreen?: boolean;
+}) {
+	return (
+		<div className={cn(FrameVarians({ fullScreen }), className)}>
+			{children}
+		</div>
+	);
+}
 
 function DocxViewerHtml({
 	html,
@@ -38,4 +65,4 @@ function DocxViewerHtml({
 	);
 }
 
-export { DocxViewerHtml };
+export { DocxViewerHtml, DocxViewerFrame };

@@ -1,27 +1,38 @@
 import { cn } from '@/lib/utils';
+import { cva } from 'class-variance-authority';
+
+const VaraintClasses = cva('sds:h-full sds:w-full', {
+	variants: {
+		fullScreen: {
+			true: 'sds:rounded-none sds:lg:h-screen sds:lg:w-full',
+			false: 'sds:rounded sds:border-0 sds:bg-transparent',
+		},
+	},
+	defaultVariants: {
+		fullScreen: false,
+	},
+});
 
 interface FildPdfViewerProps {
 	fileUrl: string;
 	fullScreen?: boolean;
+	fileName?: string;
 }
 
 function PDFFileViewerUI({
 	fileUrl,
 	fullScreen,
-
 	className,
+	fileName,
 	...iframeProps
 }: FildPdfViewerProps & React.ComponentProps<'iframe'>) {
 	return (
 		<iframe
 			src={fileUrl}
-			className={cn(
-				'sds:lg:w-90% sds:min-h-80 sds:w-full  sds:border-0 sds:sm:h-[50vh] sds:md:h-[70vh] sds:lg:h-[75vh] sds:rounded',
-				fullScreen && 'sds:lg:h-screen sds:lg:w-full sds:rounded-none',
-				className,
-			)}
+			className={cn(VaraintClasses({ fullScreen }), className)}
 			height='100%'
 			width='100%'
+			title={fileName}
 			{...iframeProps}
 		/>
 	);

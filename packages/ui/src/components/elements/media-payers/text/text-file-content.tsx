@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import { cva } from 'class-variance-authority';
 
 function TextLineContentCount({
 	linesCount,
@@ -36,4 +37,31 @@ function TextLineContentPre({
 	);
 }
 
-export { TextLineContentCount, TextLineContentPre };
+const FrameVarians = cva('sds:bg-background sds:flex sds:w-full sds:p-4', {
+	variants: {
+		fullScreen: {
+			true: 'sds:h-screen sds:w-full sds:rounded-none',
+			false:
+				'sds:h-fit sds:w-full sds:rounded sds:border sds:shadow-xs sds:border-border',
+		},
+	},
+	defaultVariants: {
+		fullScreen: false,
+	},
+});
+
+function TextFileViewerFrame({
+	className,
+	children,
+	fullScreen = false,
+}: React.ComponentPropsWithoutRef<'div'> & {
+	fullScreen?: boolean;
+}): React.ReactNode {
+	return (
+		<div className={cn(FrameVarians({ fullScreen }), className)}>
+			{children}
+		</div>
+	);
+}
+
+export { TextLineContentCount, TextLineContentPre, TextFileViewerFrame };

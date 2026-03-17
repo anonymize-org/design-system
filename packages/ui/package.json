@@ -42,6 +42,7 @@
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.1",
     "eslint": "^9.23.0",
+    "file-type": "^21.3.3",
     "mammoth": "^1.11.0",
     "postcss": "^8.5.3",
     "tsup": "^8.4.0",
