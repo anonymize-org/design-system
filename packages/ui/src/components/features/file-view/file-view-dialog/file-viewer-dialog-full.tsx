@@ -43,7 +43,7 @@ function FileViewerDialogFullScreen({
 	file,
 	onDownload,
 	trigger,
-}: FileContentDialogProps) {
+}: FileContentDialogProps): React.ReactNode {
 	const { fullScreen, toggleFullScreen } = useFullScreen();
 	const { zoom, handleZoomIn, handleZoomOut, resetZoom } = useImageZoom();
 	const fileUrl = useFileUrl(file);
@@ -137,7 +137,7 @@ function FileViewerDialogFullScreen({
 			description={fileSize}
 			controlsElements={
 				hasNoControls ? null : (
-					<div className='ml-auto flex items-center gap-2'>
+					<div className='sds:ml-auto sds:flex sds:items-center sds:gap-2'>
 						{showImageControls && (
 							<ControlsImageFile
 								zoom={zoom}

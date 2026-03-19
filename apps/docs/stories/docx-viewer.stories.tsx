@@ -7,8 +7,7 @@ type DocxViewerStoryArgs = {
 };
 
 const meta: Meta<DocxViewerStoryArgs> = {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	component: DocxViewer as any,
+	component: DocxViewer as unknown as React.ComponentType<DocxViewerStoryArgs>,
 	title: 'Media Players/DOCX Viewer',
 	argTypes: {
 		src: { control: { type: 'text' } },
