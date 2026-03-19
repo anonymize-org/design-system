@@ -1,5 +1,30 @@
 import { fileTypeFromBlob } from 'file-type';
-import { getFileExtension } from '../../media-players/audio-player/utils/file';
+import { getFileExtension } from '../../media-players/utils/file';
+
+export const CODE_EXTENSIONS = new Set([
+	'js',
+	'ts',
+	'jsx',
+	'tsx',
+	'py',
+	'rb',
+	'php',
+	'java',
+	'c',
+	'cpp',
+	'cs',
+	'sh',
+	'bash',
+	'zsh',
+	'yml',
+	'yaml',
+	'md',
+	'sql',
+	'json',
+	'xml',
+	'html',
+	'css',
+]);
 
 function mapExtensionToMime(ext: string): string | null {
 	switch (ext.toLowerCase()) {
@@ -7,8 +32,14 @@ function mapExtensionToMime(ext: string): string | null {
 			return 'text/csv';
 		case 'json':
 			return 'application/json';
+		case 'xml':
+			return 'application/xml';
 		case 'txt':
 			return 'text/plain';
+		case 'html':
+			return 'text/html';
+		case 'css':
+			return 'text/css';
 		case 'svg':
 			return 'image/svg+xml';
 		case 'pdf':
@@ -36,6 +67,7 @@ export type MediaKind =
 	| 'spreadsheet'
 	| 'presentation'
 	| 'archive'
+	| 'code'
 	| 'unknown';
 
 export interface MediaInfo {
@@ -78,7 +110,7 @@ export async function detectMediaType(file: File | string): Promise<MediaInfo> {
 		}
 	}
 
-	const kind = classifyMime(mime);
+	const kind = classifyMime(mime, ext);
 
 	return { kind, mime, ext };
 }
@@ -86,8 +118,13 @@ export async function detectMediaType(file: File | string): Promise<MediaInfo> {
 /**
  * Classification du MIME en grandes catégories de médias.
  */
-export function classifyMime(mime: string | null): MediaKind {
+export function classifyMime(
+	mime: string | null,
+	ext: string | null,
+): MediaKind {
 	if (!mime) return 'unknown';
+
+	if (ext && CODE_EXTENSIONS.has(ext)) return 'code';
 
 	if (mime.startsWith('image/')) return 'image';
 	if (mime.startsWith('video/')) return 'video';

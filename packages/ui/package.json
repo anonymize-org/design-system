@@ -41,10 +41,12 @@
     "@tailwindcss/typography": "^0.5.19",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.1",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "eslint": "^9.23.0",
     "file-type": "^21.3.3",
     "mammoth": "^1.11.0",
     "postcss": "^8.5.3",
+    "react-syntax-highlighter": "^16.1.1",
     "tsup": "^8.4.0",
     "typescript": "5.8.3",
     "xlsx": "^0.18.5"

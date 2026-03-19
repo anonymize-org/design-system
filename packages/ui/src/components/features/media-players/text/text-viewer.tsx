@@ -1,5 +1,5 @@
 import TextLineNumberList from '@/components/elements/media-payers/text/text-line-number-list';
-import { useTextFileContent } from './use-text-content';
+import { useTextFileContent } from '../hooks/use-text-content';
 import {
 	TextLineContentPre,
 	TextLineContentCount,

@@ -9,7 +9,7 @@ import { ARCHIVE_EXTENSIONS, getArchiveIcon } from './helper';
 import { cn } from '@/lib/utils';
 import { TooltipUI } from '@/components/elements/tooltip-ui';
 import { TooltipProvider } from '@/components/core/tooltip';
-import { getFileExtension } from '../audio-player/utils/file';
+import { getFileExtension } from '../utils/file';
 
 interface ArchiveFileViewerProps {
 	fileName: string;

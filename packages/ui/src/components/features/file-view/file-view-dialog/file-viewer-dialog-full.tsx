@@ -1,5 +1,5 @@
 import FileViewerFullScreenMode from '@/components/elements/full-screen-mode';
-import { toHuman } from '../../media-players/audio-player/utils/file';
+import { toHuman } from '../../media-players/utils/file';
 import { useFullScreen, useImageZoom } from './hooks/use-dialog-file-controls';
 import PDFFileViewer from '../../media-players/pdf/pdf-file-viewer';
 import { FileViewerDialogFullScreenUI } from '@/components/elements/file-view/dialog-file-view/full-screen/full-screen-dialog-ui';
@@ -25,7 +25,9 @@ import {
 	UnsupportedFileFallback,
 } from '@/components/elements/media-payers/shared/file-alert-fallback';
 import { MediaKind } from '../helpers/file-types';
-import { SheetFileViewer } from '../../media-players/sheet/Sheet-file-viewer';
+
+import { CodeFileViewer } from '../../media-players/code/code-file-viewer';
+import { SheetFileViewer } from '../../media-players/sheet/sheet-file-viewer';
 
 interface FileContentDialogProps {
 	file: File;
@@ -56,7 +58,10 @@ function FileViewerDialogFullScreen({
 	const showsUnknownFallback =
 		mediaKind === 'presentation' || mediaKind === 'unknown';
 	const showFullScreenButton =
-		mediaKind !== 'video' && mediaKind !== 'archive' && !showsUnknownFallback;
+		mediaKind !== 'video' &&
+		mediaKind !== 'archive' &&
+		mediaKind !== 'code' &&
+		!showsUnknownFallback;
 	const hasNoControls =
 		!showImageControls && !showDownloadButton && !showFullScreenButton;
 
@@ -102,6 +107,7 @@ function FileViewerDialogFullScreen({
 					sizeMode={isFullScreen ? 'full' : 'medium'}
 				/>
 			),
+			code: <CodeFileViewer file={file} />,
 			text: <TextFileViewer file={file} fullScreen={isFullScreen} />,
 			docx: <DocxViewer file={file} />,
 			archive: <ArchiveFileViewer fileName={fileName} fileSize={fileSize} />,
