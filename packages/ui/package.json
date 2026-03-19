@@ -46,7 +46,8 @@
     "mammoth": "^1.11.0",
     "postcss": "^8.5.3",
     "tsup": "^8.4.0",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "xlsx": "^0.18.5"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",

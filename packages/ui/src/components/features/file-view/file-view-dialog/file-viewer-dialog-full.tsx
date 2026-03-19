@@ -25,6 +25,7 @@ import {
 	UnsupportedFileFallback,
 } from '@/components/elements/media-payers/shared/file-alert-fallback';
 import { MediaKind } from '../helpers/file-types';
+import { SheetFileViewer } from '../../media-players/sheet/Sheet-file-viewer';
 
 interface FileContentDialogProps {
 	file: File;
@@ -53,9 +54,7 @@ function FileViewerDialogFullScreen({
 	const showImageControls = mediaKind === 'image';
 	const showDownloadButton = Boolean(onDownload);
 	const showsUnknownFallback =
-		mediaKind === 'presentation' ||
-		mediaKind === 'spreadsheet' ||
-		mediaKind === 'unknown';
+		mediaKind === 'presentation' || mediaKind === 'unknown';
 	const showFullScreenButton =
 		mediaKind !== 'video' && mediaKind !== 'archive' && !showsUnknownFallback;
 	const hasNoControls =
@@ -106,9 +105,9 @@ function FileViewerDialogFullScreen({
 			text: <TextFileViewer file={file} fullScreen={isFullScreen} />,
 			docx: <DocxViewer file={file} />,
 			archive: <ArchiveFileViewer fileName={fileName} fileSize={fileSize} />,
-			csv: <TextFileViewer file={file} fullScreen={isFullScreen} />,
+			csv: <SheetFileViewer file={file} />,
 			json: <TextFileViewer file={file} fullScreen={isFullScreen} />,
-			spreadsheet: <UnsupportedFileFallback />,
+			spreadsheet: <SheetFileViewer file={file} />,
 			presentation: <UnsupportedFileFallback />,
 			unknown: <UnknownFileFallback />,
 		};
