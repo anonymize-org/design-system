@@ -5,8 +5,9 @@ import {
 	TextLineContentCount,
 	TextFileViewerFrame,
 } from '@/components/elements/media-payers/text/text-file-content';
-import { FileErrorFallback } from '@/components/elements/media-payers/shared/file-error-fallback';
+
 import SpinnerLoader from '@/components/loader/spinner';
+import { ErrorFileFallback } from '@/components/elements/media-payers/shared/file-alert-fallback';
 
 interface TextFileViewerProps {
 	file: File;
@@ -30,7 +31,7 @@ function TextFileViewer({
 	const { text, linesCount, lines, error } = useTextFileContent(file);
 
 	if (error) {
-		return fallback ?? <FileErrorFallback />;
+		return fallback ?? <ErrorFileFallback />;
 	}
 
 	return (

@@ -20,7 +20,11 @@ import TextFileViewer from '../../media-players/text/text-viewer';
 import { DocxViewer } from '../../media-players/docx/docx-viewer';
 
 import { ArchiveFileViewer } from '../../media-players/archive/archive-file-viewer';
-import { FileUnknownFallback } from '@/components/elements/media-payers/shared/file-unkown-fallback';
+import {
+	UnknownFileFallback,
+	UnsupportedFileFallback,
+} from '@/components/elements/media-payers/shared/file-alert-fallback';
+import { MediaKind } from '../helpers/file-types';
 
 interface FileContentDialogProps {
 	file: File;
@@ -48,7 +52,12 @@ function FileViewerDialogFullScreen({
 
 	const showImageControls = mediaKind === 'image';
 	const showDownloadButton = Boolean(onDownload);
-	const showFullScreenButton = mediaKind !== 'video' && mediaKind !== 'archive';
+	const showsUnknownFallback =
+		mediaKind === 'presentation' ||
+		mediaKind === 'spreadsheet' ||
+		mediaKind === 'unknown';
+	const showFullScreenButton =
+		mediaKind !== 'video' && mediaKind !== 'archive' && !showsUnknownFallback;
 	const hasNoControls =
 		!showImageControls && !showDownloadButton && !showFullScreenButton;
 
@@ -68,45 +77,42 @@ function FileViewerDialogFullScreen({
 			return <SpinnerLoader />;
 		}
 
-		switch (mediaKind) {
-			case 'video':
-				return (
-					<VideoPlayer fileUrl={fileUrl} fileName={fileName} fileType={type} />
-				);
-			case 'audio':
-				return (
-					<AudioPlayer
-						fileUrl={fileUrl}
-						fileName={fileName}
-						fileType={type}
-						fullScreen={isFullScreen}
-					/>
-				);
-			case 'pdf':
-				return (
-					<PDFFileViewer
-						fileUrl={fileUrl}
-						fileName={fileName}
-						fullScreen={isFullScreen}
-					/>
-				);
-			case 'image':
-				return (
-					<ImageFileViewer
-						fileUrl={fileUrl}
-						zoom={zoom}
-						sizeMode={isFullScreen ? 'full' : 'medium'}
-					/>
-				);
-			case 'text':
-				return <TextFileViewer file={file} fullScreen={isFullScreen} />;
-			case 'docx':
-				return <DocxViewer file={file} />;
-			case 'archive':
-				return <ArchiveFileViewer fileName={fileName} fileSize={fileSize} />;
-			default:
-				return <FileUnknownFallback className='sds:mx-auto' />;
-		}
+		const filePlayerComponents: Record<MediaKind, React.ReactNode> = {
+			video: (
+				<VideoPlayer fileUrl={fileUrl} fileName={fileName} fileType={type} />
+			),
+			audio: (
+				<AudioPlayer
+					fileUrl={fileUrl}
+					fileName={fileName}
+					fileType={type}
+					fullScreen={isFullScreen}
+				/>
+			),
+			pdf: (
+				<PDFFileViewer
+					fileUrl={fileUrl}
+					fileName={fileName}
+					fullScreen={isFullScreen}
+				/>
+			),
+			image: (
+				<ImageFileViewer
+					fileUrl={fileUrl}
+					zoom={zoom}
+					sizeMode={isFullScreen ? 'full' : 'medium'}
+				/>
+			),
+			text: <TextFileViewer file={file} fullScreen={isFullScreen} />,
+			docx: <DocxViewer file={file} />,
+			archive: <ArchiveFileViewer fileName={fileName} fileSize={fileSize} />,
+			csv: <TextFileViewer file={file} fullScreen={isFullScreen} />,
+			json: <TextFileViewer file={file} fullScreen={isFullScreen} />,
+			spreadsheet: <UnsupportedFileFallback />,
+			presentation: <UnsupportedFileFallback />,
+			unknown: <UnknownFileFallback />,
+		};
+		return filePlayerComponents[mediaKind] || <UnknownFileFallback />;
 	};
 
 	if (fullScreen) {
