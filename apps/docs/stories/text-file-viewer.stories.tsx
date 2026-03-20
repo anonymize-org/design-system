@@ -21,17 +21,13 @@ export const Default: Story = {
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             `,
 			],
-			'sample-text',
+			'sample-text.txt',
 			{
 				type: 'text/plain',
 			},
 		);
 
-		return (
-			<>
-				<TextFileViewer file={file} />
-			</>
-		);
+		return <TextFileViewer file={file} />;
 	},
 	name: 'Text File Viewer',
 	args: {},
