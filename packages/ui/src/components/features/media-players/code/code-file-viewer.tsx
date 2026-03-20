@@ -1,31 +1,41 @@
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import {
+	CodeFileViewerFrame,
+	CodeFileViewerUI,
+} from '@/components/elements/media-payers/code/code-file-viewer-ui';
 
 import SpinnerLoader from '@/components/loader/spinner';
 import { ErrorFileFallback } from '@/components/elements/media-payers/shared/file-alert-fallback';
-import { useTextFileContent } from '../hooks/use-text-content';
-import { getFileExtension } from '../utils/file';
+import { useCodeFileViewer } from './use-code-file-viewer';
 
-function CodeFileViewer({ file }: { file: File }) {
-	const { text, error } = useTextFileContent(file);
+interface CodeFileViewerProps {
+	file: File;
+	className?: string;
+	classes?: {
+		content?: string;
+	};
+	fallback?: React.ReactNode;
+}
+
+function CodeFileViewer({
+	file,
+	className,
+	classes,
+	fallback,
+}: CodeFileViewerProps) {
+	const { html, error, isLoading } = useCodeFileViewer(file);
 
 	if (error) {
-		return <ErrorFileFallback />;
+		return fallback ?? <ErrorFileFallback />;
 	}
 
-	if (!text) {
+	if (isLoading) {
 		return <SpinnerLoader />;
 	}
 
 	return (
-		<SyntaxHighlighter
-			showLineNumbers
-			wrapLines
-			wrapLongLines
-			language={getFileExtension(file.name)}
-			style={vscDarkPlus}>
-			{text}
-		</SyntaxHighlighter>
+		<CodeFileViewerFrame className={className}>
+			<CodeFileViewerUI html={html} className={classes?.content} />
+		</CodeFileViewerFrame>
 	);
 }
 
