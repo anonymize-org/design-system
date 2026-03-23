@@ -37,12 +37,11 @@ function TextLineContentPre({
 	);
 }
 
-const FrameVarians = cva('sds:bg-background sds:flex sds:w-full sds:p-4', {
+const FrameVarians = cva('sds:bg-background sds:flex sds:w-full', {
 	variants: {
 		fullScreen: {
-			true: 'sds:h-screen sds:w-full sds:rounded-none',
-			false:
-				'sds:h-fit sds:w-full sds:rounded sds:border sds:shadow-xs sds:border-border',
+			true: 'sds:h-screen sds:w-full',
+			false: 'sds:h-fit sds:w-full',
 		},
 	},
 	defaultVariants: {

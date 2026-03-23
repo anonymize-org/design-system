@@ -19,7 +19,11 @@ function SheetViewerTableBody({
 	className,
 	children,
 }: React.ComponentProps<typeof TableBody>) {
-	return <TableBody className={cn(className)}>{children}</TableBody>;
+	return (
+		<TableBody className={cn('sds:border sds:border-border', className)}>
+			{children}
+		</TableBody>
+	);
 }
 
 export { SheetViewerTable, SheetViewerTableHeader, SheetViewerTableBody };

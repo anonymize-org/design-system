@@ -22,23 +22,21 @@ function DialogFileHeaderSize({
 	classes,
 }: DialogFileHeaderSizeProps): React.ReactNode {
 	return (
-		<>
-			<div className={cn('sds:flex sds:items-center sds:gap-2', className)}>
-				<WeightIcon
-					className={cn(
-						'sds:text-muted-foreground sds:inline-block sds:h-4 sds:w-4',
-						classes?.icon,
-					)}
-				/>
-				<FullScreenDialogDescription
-					className={cn(
-						'sds:text-muted-foreground sds:text-left sds:font-mono sds:text-xs sds:leading-4 sds:text-wrap sds:sm:text-sm',
-						classes?.description,
-					)}>
-					{size}
-				</FullScreenDialogDescription>
-			</div>
-		</>
+		<div className={cn('sds:flex sds:items-center sds:gap-2', className)}>
+			<WeightIcon
+				className={cn(
+					'sds:text-muted-foreground sds:inline-block sds:h-4 sds:w-4',
+					classes?.icon,
+				)}
+			/>
+			<FullScreenDialogDescription
+				className={cn(
+					'sds:text-muted-foreground sds:text-left sds:font-mono sds:text-xs sds:leading-4 sds:text-wrap sds:sm:text-sm',
+					classes?.description,
+				)}>
+				{size}
+			</FullScreenDialogDescription>
+		</div>
 	);
 }
 

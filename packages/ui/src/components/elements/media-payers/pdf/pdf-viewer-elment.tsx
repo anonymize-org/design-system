@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
 
-const VaraintClasses = cva('sds:h-full sds:w-full', {
+const VaraintClasses = cva('sds:h-full sds:w-full sds:min-h-[60vh]', {
 	variants: {
 		fullScreen: {
 			true: 'sds:rounded-none sds:lg:h-screen sds:lg:w-full',
