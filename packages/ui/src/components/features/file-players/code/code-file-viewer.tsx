@@ -3,7 +3,7 @@ import {
 	CodeFileViewerUI,
 } from '@/components/elements/media-payers/code/code-file-viewer-ui';
 
-import SpinnerLoader from '@/components/loader/spinner';
+import SpinnerLoader from '@/components/elements/loader/spinner';
 import { ErrorFileFallback } from '@/components/elements/media-payers/shared/file-alert-fallback';
 import { useCodeFileViewer } from './use-code-file-viewer';
 

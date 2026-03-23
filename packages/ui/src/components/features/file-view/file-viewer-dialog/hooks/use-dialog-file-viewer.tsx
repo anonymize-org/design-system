@@ -1,19 +1,19 @@
 import React from 'react';
 import { useFullScreen, useImageZoom } from './use-dialog-file-controls';
 import { useMediaKind } from '../../hooks/use-media-kind';
-import { useFileUrl } from '@/components/features/media-players/hooks/use-file-url';
-import { toHuman } from '@/components/features/media-players/utils/file';
+import { useFileUrl } from '@/components/features/file-players/hooks/use-file-url';
+import { toHuman } from '@/components/features/file-players/utils/file';
 import { MediaKind } from '../../helpers/file-types';
-import { VideoPlayer } from '@/components/features/media-players/video-player/video-media-payer';
-import { AudioPlayer } from '@/components/features/media-players/audio-player/audio-media-payer';
-import SpinnerLoader from '@/components/loader/spinner';
-import PDFFileViewer from '@/components/features/media-players/pdf/pdf-file-viewer';
-import ImageFileViewer from '@/components/features/media-players/image/image-viewer';
-import { CodeFileViewer } from '@/components/features/media-players/code/code-file-viewer';
-import TextFileViewer from '@/components/features/media-players/text/text-viewer';
-import { DocxViewer } from '@/components/features/media-players/docx/docx-viewer';
-import { ArchiveFileViewer } from '@/components/features/media-players/archive/archive-file-viewer';
-import { SheetFileViewer } from '@/components/features/media-players/sheet/sheet-file-viewer';
+import { VideoPlayer } from '@/components/features/file-players/video-player/video-media-payer';
+import { AudioPlayer } from '@/components/features/file-players/audio-player/audio-media-payer';
+import SpinnerLoader from '@/components/elements/loader/spinner';
+import PDFFileViewer from '@/components/features/file-players/pdf/pdf-file-viewer';
+import ImageFileViewer from '@/components/features/file-players/image/image-viewer';
+import { CodeFileViewer } from '@/components/features/file-players/code/code-file-viewer';
+import TextFileViewer from '@/components/features/file-players/text/text-viewer';
+import { DocxViewer } from '@/components/features/file-players/docx/docx-viewer';
+import { ArchiveFileViewer } from '@/components/features/file-players/archive/archive-file-viewer';
+import { SheetFileViewer } from '@/components/features/file-players/sheet/sheet-file-viewer';
 import {
 	UnknownFileFallback,
 	UnsupportedFileFallback,

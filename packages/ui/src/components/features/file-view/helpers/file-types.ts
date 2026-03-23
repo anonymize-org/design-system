@@ -1,5 +1,5 @@
 import { fileTypeFromBlob } from 'file-type';
-import { getFileExtension } from '../../media-players/utils/file';
+import { getFileExtension } from '../../file-players/utils/file';
 
 export const CODE_EXTENSIONS = new Set([
 	'js',

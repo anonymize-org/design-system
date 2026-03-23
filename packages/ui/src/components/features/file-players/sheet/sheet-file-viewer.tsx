@@ -1,4 +1,4 @@
-import SpinnerLoader from '@/components/loader/spinner';
+import SpinnerLoader from '@/components/elements/loader/spinner';
 import { useSheetData } from './hooks/use-sheet-data';
 import {
 	SheetViewerTable,

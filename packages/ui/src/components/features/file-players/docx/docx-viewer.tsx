@@ -4,7 +4,7 @@ import {
 } from '@/components/elements/media-payers/docx/docx-viewer-html';
 import { useDocxViewer } from './use-docx-viewer';
 
-import SpinnerLoader from '@/components/loader/spinner';
+import SpinnerLoader from '@/components/elements/loader/spinner';
 import { ErrorFileFallback } from '@/components/elements/media-payers/shared/file-alert-fallback';
 
 interface DocxViewerProps {

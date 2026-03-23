@@ -6,7 +6,7 @@ import {
 	TextFileViewerFrame,
 } from '@/components/elements/media-payers/text/text-file-content';
 
-import SpinnerLoader from '@/components/loader/spinner';
+import SpinnerLoader from '@/components/elements/loader/spinner';
 import { ErrorFileFallback } from '@/components/elements/media-payers/shared/file-alert-fallback';
 
 interface TextFileViewerProps {
