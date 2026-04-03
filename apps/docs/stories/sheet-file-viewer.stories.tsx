@@ -1,5 +1,5 @@
+import { SheetFileViewer } from '@secrecy/ui/components/features/file-players/sheet/sheet-file-viewer';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { SheetFileViewer } from '@secrecy/ui/components/features/media-players/sheet/sheet-file-viewer';
 
 const meta: Meta<typeof SheetFileViewer> = {
 	component: SheetFileViewer,

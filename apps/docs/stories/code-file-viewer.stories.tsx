@@ -1,4 +1,4 @@
-import { CodeFileViewer } from '@secrecy/ui/components/features/media-players/code/code-file-viewer';
+import { CodeFileViewer } from '@secrecy/ui/components/features/file-players/code/code-file-viewer';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof CodeFileViewer> = {

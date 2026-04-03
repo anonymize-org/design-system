@@ -1,4 +1,4 @@
-import { DocxViewer } from '@secrecy/ui/components/features/media-players/docx/docx-viewer';
+import { DocxViewer } from '@secrecy/ui/components/features/file-players/docx/docx-viewer';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 type DocxViewerStoryArgs = {

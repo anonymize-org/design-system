@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import ImageFileViewer from '@secrecy/ui/components/features/media-players/image/image-viewer';
+import ImageFileViewer from '@secrecy/ui/components/features/file-players/image/image-viewer';
 
 const meta: Meta<typeof ImageFileViewer> = {
 	component: ImageFileViewer,
