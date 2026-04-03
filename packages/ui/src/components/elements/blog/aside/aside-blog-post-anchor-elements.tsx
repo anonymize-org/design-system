@@ -45,7 +45,7 @@ function BlogPostAnchorRoot({
 	return (
 		<AnchorText
 			className={cn(
-				'sds:block sds:w-full sds:transform sds:px-2 sds:transition-all sds:duration-300 sds:hover:scale-105',
+				'sds:w-full sds:transform sds:px-2 sds:transition-all sds:duration-300 sds:hover:scale-105 sds:flex sds:flex-col sds:items-center sds:gap-2',
 				className,
 			)}
 			href={href}>
@@ -55,7 +55,7 @@ function BlogPostAnchorRoot({
 }
 
 const AsideVariants = cva(
-	'sds:hidden sds:h-fit sds:w-full sds:rounded-sm md:sds:flex',
+	'sds:h-fit sds:w-full sds:rounded-sm sds:flex sds:flex-col sds:items-center sds:gap-4 sds:rounded-sm sds:p-4 sds:max-w-72 sds:min-w-60',
 	{
 		variants: {
 			variant: {
@@ -82,7 +82,11 @@ function AsideBlogPostAnchorUI({
 }): React.ReactNode {
 	return (
 		<aside className={cn(AsideVariants({ variant }), className)}>
-			{title && <h5 className={classes?.title}>{title}</h5>}
+			{title && (
+				<h5 className={cn('sds:font-semibold sds:text-lg', classes?.title)}>
+					{title}
+				</h5>
+			)}
 			{children}
 		</aside>
 	);

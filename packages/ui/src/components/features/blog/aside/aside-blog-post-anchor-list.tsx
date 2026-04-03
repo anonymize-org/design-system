@@ -15,7 +15,7 @@ interface AsideBlogPostAnchorProps {
 	};
 }
 
-function AsideBlogPostAnchor({
+function AsideBlogPostAnchorList({
 	title,
 	list,
 	className,
@@ -42,4 +42,4 @@ function AsideBlogPostAnchor({
 	);
 }
 
-export { AsideBlogPostAnchor };
+export { AsideBlogPostAnchorList };
