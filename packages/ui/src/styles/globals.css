@@ -2,6 +2,7 @@
 @import 'tw-animate-css';
 
 @plugin '@tailwindcss/typography';
+/* https://tweakcn.com/themes/cmesljyda000104lb9xpr0cp0*/
 
 @custom-variant dark (&:is(.dark *));
 

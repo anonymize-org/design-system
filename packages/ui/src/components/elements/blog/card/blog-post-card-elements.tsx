@@ -83,7 +83,7 @@ function BlogPostCardBottom({
 	return (
 		<div
 			className={cn(
-				'sds:bg-accent sds:h-10 sds:w-full sds:border-t sds:py-2 sds:text-center',
+				'sds:bg-accent sds:h-10 sds:w-full sds:border-t sds:border-primary/40 sds:py-2 sds:text-center',
 				className,
 			)}>
 			{children}
