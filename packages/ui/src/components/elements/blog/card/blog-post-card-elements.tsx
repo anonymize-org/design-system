@@ -1,5 +1,19 @@
 import { Card, CardContent, CardHeader } from '@/components/core/card';
 import { cn } from '@/lib/utils';
+import { cva, VariantProps } from 'class-variance-authority';
+
+const Variants = cva('sds:flex sds:flex-col sds:overflow-hidden sds:p-0', {
+	variants: {
+		size: {
+			sm: 'sds:w-64',
+			md: 'sds:w-72',
+			lg: 'sds:w-80',
+		},
+	},
+	defaultVariants: {
+		size: 'md',
+	},
+});
 
 function TagCard({
 	tag,
@@ -27,19 +41,15 @@ function BlogPostCardWrapper({
 	return <div className='sds:relative'>{children}</div>;
 }
 
+export type BlogPostCardContainerProps = React.ComponentProps<typeof Card> & {
+	size?: VariantProps<typeof Variants>['size'];
+};
 function BlogPostCardContainer({
 	className,
+	size,
 	...cardProps
-}: React.ComponentProps<typeof Card>) {
-	return (
-		<Card
-			className={cn(
-				'sds:flex sds:w-72 sds:flex-col sds:overflow-hidden sds:p-0',
-				className,
-			)}
-			{...cardProps}
-		/>
-	);
+}: BlogPostCardContainerProps): React.ReactNode {
+	return <Card className={cn(Variants({ size }), className)} {...cardProps} />;
 }
 
 function BlogPostCardHeader({

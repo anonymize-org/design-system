@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 import { HTMLAttributeAnchorTarget } from 'react';
-import { SecrecyLongLogo } from './secrecy-long-logo';
+import { SecrecyLongLogo } from './svg/secrecy-long-logo';
 
 function BadgeDot({
 	className,

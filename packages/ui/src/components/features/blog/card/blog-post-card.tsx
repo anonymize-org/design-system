@@ -7,6 +7,7 @@ import {
 	BlogPostCardBody,
 	BlogPostCardHeader,
 	TagCard,
+	BlogPostCardContainerProps,
 } from '@/components/elements/blog/card/blog-post-card-elements';
 
 interface BlogPostCardProps {
@@ -31,6 +32,7 @@ interface BlogPostCardProps {
 		bottom?: string;
 		anchor?: string;
 	};
+	size?: BlogPostCardContainerProps['size'];
 }
 
 function BlogPostCard({
@@ -42,12 +44,13 @@ function BlogPostCard({
 	link,
 	className,
 	classes,
+	size,
 }: BlogPostCardProps): React.ReactNode {
 	return (
 		<BlogPostCardWrapper>
 			{tagLabel && <TagCard tag={tagLabel} />}
 
-			<BlogPostCardContainer className={className}>
+			<BlogPostCardContainer className={className} size={size}>
 				<BlogPostCardHeader
 					src={img.src}
 					width={img.width}
