@@ -8,12 +8,12 @@
     "css": "src/styles/globals.css",
     "baseColor": "neutral",
     "cssVariables": true,
-    "prefix": "sds:"
+    "prefix": "sds"
   },
   "aliases": {
     "components": "@/components",
     "utils": "@/lib/utils",
-    "ui": "@/components/ui",
+    "ui": "@/components/core",
     "lib": "@/lib",
     "hooks": "@/hooks"
   },

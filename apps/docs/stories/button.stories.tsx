@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button } from "@secrecy/ui/components/ui/button";
+import { Button } from '@secrecy/ui/components/core/button';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof Button> = {
-  component: Button,
-  argTypes: {
-    type: {
-      control: { type: "radio" },
-      options: ["button", "submit", "reset"],
-    },
-  },
+	component: Button,
+	argTypes: {
+		type: {
+			control: { type: 'radio' },
+			options: ['button', 'submit', 'reset'],
+		},
+	},
 };
 
 export default meta;
@@ -21,19 +21,18 @@ type Story = StoryObj<typeof Button>;
  * to learn how to use render functions.
  */
 export const Primary: Story = {
-  render: (props) => (
-    <Button
-      {...props}
-      onClick={(): void => {
-        alert("Hello from Turborepo!");
-      }}
-    >
-      {props.children}
-    </Button>
-  ),
-  name: "Button",
-  args: {
-    children: "Hello",
-    type: "button",
-  },
+	render: (props) => (
+		<Button
+			{...props}
+			onClick={(): void => {
+				alert('Hello from Turborepo!');
+			}}>
+			{props.children}
+		</Button>
+	),
+	name: 'Button',
+	args: {
+		children: 'Hello',
+		type: 'button',
+	},
 };
