@@ -1,5 +1,9 @@
 {
   "name": "@secrecy/ui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anonymize-org/design-system.git"
+  },
   "version": "0.0.0",
   "sideEffects": false,
   "license": "MIT",
