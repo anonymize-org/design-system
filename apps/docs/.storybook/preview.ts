@@ -1,4 +1,4 @@
-import '@secrecy/ui/styles';
+import '@secrecy/design-system/styles';
 
 import { withThemeByClassName } from '@storybook/addon-themes';
 
