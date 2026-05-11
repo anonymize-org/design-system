@@ -1,4 +1,4 @@
-import { Button } from '@secrecy/design-system/components/core/button';
+import { Button } from '@secrecy/design-system';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof Button> = {

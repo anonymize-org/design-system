@@ -1,4 +1,3 @@
-import './styles/globals.css';
 export * from './components/core/accordion';
 export * from './components/core/alert-dialog';
 export * from './components/core/alert';

@@ -1,6 +1,5 @@
-import '@secrecy/design-system/styles';
-
 import { withThemeByClassName } from '@storybook/addon-themes';
+import '@secrecy/design-system/styles.css';
 
 export const decorators = [
 	withThemeByClassName({

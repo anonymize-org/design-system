@@ -10,7 +10,8 @@
   "type": "module",
   "main": "./dist/index.cjs",
   "files": [
-    "dist"
+    "dist",
+    "src/styles/globals.css"
   ],
   "exports": {
     ".": {
@@ -18,10 +19,7 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./styles": {
-      "import": "./dist/index.css",
-      "require": "./dist/index.css"
-    },
+   "./styles.css": "./src/styles/globals.css",
     "./*": {
       "types": "./dist/*.d.ts",
       "import": "./dist/*.js",
