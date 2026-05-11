@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/react-vite';
+import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
 	stories: ['../stories/*.stories.tsx', '../stories/**/*.stories.tsx'],
@@ -9,6 +10,13 @@ const config: StorybookConfig = {
 		'@storybook/addon-themes',
 		'storybook-dark-mode',
 	],
+	async viteFinal(config) {
+		return mergeConfig(config, {
+			optimizeDeps: {
+				include: ['@secrecy/design-system'],
+			},
+		});
+	},
 };
 
 export default config;
