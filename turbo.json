@@ -1,13 +1,21 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
+    "transit": {
+      "dependsOn": ["^transit"]
+    },
     "build": {
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**", "storybook-static/**"],
+      "outputs": ["dist/**"],
       "dependsOn": ["^build"]
     },
     "lint": {
-      "dependsOn": ["^lint"]
+      "dependsOn": ["transit"],
+      "outputs": []
+    },
+    "typecheck": {
+      "dependsOn": ["transit"],
+      "outputs": []
     },
     "dev": {
       "cache": false,
@@ -17,9 +25,7 @@
       "cache": false
     },
     "preview-storybook": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": ["build"],
       "cache": false
     }
   }
