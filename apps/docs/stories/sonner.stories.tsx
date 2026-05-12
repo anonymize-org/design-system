@@ -1,5 +1,5 @@
-import { Button } from '@secrecy/design-system/button';
-import { toast, Toaster } from '@secrecy/design-system/sonner';
+import { Button } from '@secrecy/design-system/components/core/button';
+import { toast, Toaster } from '@secrecy/design-system/components/core/sonner';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof Toaster> = {
