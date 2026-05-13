@@ -6,7 +6,7 @@
     },
     "build": {
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**"],
+      "outputs": ["dist/**","storybook-static/**"],
       "dependsOn": ["^build"]
     },
     "lint": {
