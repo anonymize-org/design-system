@@ -1,11 +1,17 @@
-import { defineConfig } from "tsup";
+import { defineConfig } from 'tsup';
 
 export default defineConfig((options) => ({
-  entry: ["src/index.ts", "src/components", "src/hooks", "src/lib"],
-  format: ["cjs", "esm"],
-  dts: true,
-  treeshake: true,
-  external: ["react"],
-  clean: true,
-  ...options,
+	entry: [
+		'src/**/*.ts',
+		'src/**/*.tsx',
+		'!src/**/*.d.ts',
+		'src/styles/globals.css',
+	],
+	format: ['cjs', 'esm'],
+	dts: true,
+	treeshake: true,
+	splitting: true,
+	external: ['react'],
+	clean: true,
+	...options,
 }));

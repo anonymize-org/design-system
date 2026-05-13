@@ -1,6 +1,6 @@
 @import 'tailwindcss' prefix(sds);
-
 @import 'tw-animate-css';
+@source "../";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -182,5 +182,12 @@
 	}
 	button {
 		@reference cursor-pointer;
+	}
+	*,
+	::after,
+	::before,
+	::placeholder,
+	::file-selector-button {
+		border-color: var(--border, currentColor);
 	}
 }
