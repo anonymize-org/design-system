@@ -1,5 +1,11 @@
 # @secrecy/ui
 
+## 2.0.0
+
+### Major Changes
+
+- f866d87: feat(ui): make exports tree-shakable
+
 ## 1.1.0
 
 ### Minor Changes
