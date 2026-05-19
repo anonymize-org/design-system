@@ -1,4 +1,4 @@
-import PDFFileViewer from '@secrecy/ui/components/features/file-players/pdf/pdf-file-viewer';
+import PDFFileViewer from '@secrecy/design-system/components/features/file-players/pdf/pdf-file-viewer';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof PDFFileViewer> = {

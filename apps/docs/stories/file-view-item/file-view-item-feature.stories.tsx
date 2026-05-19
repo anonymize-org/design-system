@@ -1,4 +1,4 @@
-import FileViewItem from '@secrecy/ui/components/features/file-view/file-view-item';
+import FileViewItem from '@secrecy/design-system/components/features/file-view/file-view-item';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 type FileViewItemStoryArgs = {

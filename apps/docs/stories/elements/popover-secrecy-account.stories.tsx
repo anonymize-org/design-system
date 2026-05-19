@@ -1,4 +1,4 @@
-import { PopoverAccountUI } from '@secrecy/ui/components/features/secrecy-account/popover-secrecy-account';
+import { PopoverAccountUI } from '@secrecy/design-system/components/features/secrecy-account/popover-secrecy-account';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof PopoverAccountUI> = {

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { BlogPostCard } from '@secrecy/ui/components/features/blog/card/blog-post-card';
+import { BlogPostCard } from '@secrecy/design-system/components/features/blog/card/blog-post-card';
 
 const meta: Meta<typeof BlogPostCard> = {
 	component: BlogPostCard,

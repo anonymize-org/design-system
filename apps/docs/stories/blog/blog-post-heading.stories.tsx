@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { BlogPostHeading } from '@secrecy/ui/components/features/blog/headings/blog-post-heading';
+import { BlogPostHeading } from '@secrecy/design-system/components/features/blog/headings/blog-post-heading';
 
 const meta: Meta<typeof BlogPostHeading> = {
 	component: BlogPostHeading,

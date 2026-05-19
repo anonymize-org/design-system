@@ -1,5 +1,5 @@
+import { AsideBlogPostAnchorList } from '@secrecy/design-system/components/features/blog/aside/aside-blog-post-anchor-list';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { AsideBlogPostAnchorList } from '@secrecy/ui/components/features/blog/aside/aside-blog-post-anchor-list';
 
 const meta: Meta<typeof AsideBlogPostAnchorList> = {
 	component: AsideBlogPostAnchorList,

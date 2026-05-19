@@ -1,4 +1,4 @@
-import TextFileViewer from '@secrecy/ui/components/features/file-players/text/text-viewer';
+import TextFileViewer from '@secrecy/design-system/components/features/file-players/text/text-viewer';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof TextFileViewer> = {

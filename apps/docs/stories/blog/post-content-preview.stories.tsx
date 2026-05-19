@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { BlogPostArticlePreview } from '@secrecy/ui/components/features/blog/article/post-content-preview';
+import { BlogPostArticlePreview } from '@secrecy/design-system/components/features/blog/article/post-content-preview';
 
 const meta: Meta<typeof BlogPostArticlePreview> = {
 	component: BlogPostArticlePreview,

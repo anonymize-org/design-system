@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { BlogNavTagsMenu } from '@secrecy/ui/components/features/blog/nav/blog-nav-tags';
+import { BlogNavTagsMenu } from '@secrecy/design-system/components/features/blog/nav/blog-nav-tags';
 
 const meta: Meta<typeof BlogNavTagsMenu> = {
 	component: BlogNavTagsMenu,
@@ -14,20 +14,19 @@ export const Default: Story = {
 	args: {
 		tags: [
 			{
-				href: '#all',
 				label: 'All',
-				active: true,
+				onClickTag: () => alert('All tags clicked'),
 			},
 			{
-				href: '#engineering',
+				onClickTag: () => alert('Engineering tag clicked'),
 				label: 'Engineering',
 			},
 			{
-				href: '#product',
+				onClickTag: () => alert('Product tag clicked'),
 				label: 'Product',
 			},
 			{
-				href: '#design-system',
+				onClickTag: () => alert('Design System tag clicked'),
 				label: 'Design System',
 			},
 		],

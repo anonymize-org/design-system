@@ -1,4 +1,4 @@
-import { AudioPlayer } from '@secrecy/ui/components/features/file-players/audio-player/audio-media-payer';
+import { AudioPlayer } from '@secrecy/design-system/components/features/file-players/audio-player/audio-media-payer';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof AudioPlayer> = {

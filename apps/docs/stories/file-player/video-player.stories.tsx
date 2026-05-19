@@ -1,4 +1,4 @@
-import { VideoPlayer } from '@secrecy/ui/components/features/file-players/video-player/video-media-payer';
+import { VideoPlayer } from '@secrecy/design-system/components/features/file-players/video-player/video-media-payer';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof VideoPlayer> = {

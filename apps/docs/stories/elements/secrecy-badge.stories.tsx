@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { SecrecyBadge } from '@secrecy/ui/components/elements/secrecy-badge';
+import { SecrecyBadge } from '@secrecy/design-system/components/elements/secrecy-badge';
 
 const meta: Meta<typeof SecrecyBadge> = {
 	component: SecrecyBadge,

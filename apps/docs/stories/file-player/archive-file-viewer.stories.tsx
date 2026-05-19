@@ -1,4 +1,4 @@
-import { ArchiveFileViewer } from '@secrecy/ui/components/features/file-players/archive/archive-file-viewer';
+import { ArchiveFileViewer } from '@secrecy/design-system/components/features/file-players/archive/archive-file-viewer';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof ArchiveFileViewer> = {

@@ -1,5 +1,5 @@
+import { BlogArticleHeadings } from '@secrecy/design-system/components/features/blog/headings/blog-article-headings';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { BlogArticleHeadings } from '@secrecy/ui/components/features/blog/headings/blog-article-headings';
 
 const meta: Meta<typeof BlogArticleHeadings> = {
 	component: BlogArticleHeadings,
