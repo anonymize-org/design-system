@@ -13,7 +13,7 @@
   "files": [
     "dist"
   ],
-  "exports": {
+   "exports": {
     "./styles.css": {
       "types": "./dist/styles/globals.d.ts",
       "default": "./dist/styles/globals.css"
