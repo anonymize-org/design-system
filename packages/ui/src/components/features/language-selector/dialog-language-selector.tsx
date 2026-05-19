@@ -10,8 +10,7 @@ import {
 	LOCALE_META,
 	type LocaleMetaKey,
 } from './constants';
-import { cn } from '@/index';
-
+import { cn } from '@/lib/utils';
 interface DialogLanguageSelectorProps {
 	open: boolean;
 	onOpenChange: (open: boolean) => void;

@@ -5,7 +5,7 @@ import {
 } from '@/components/core/popover';
 
 import { cn } from '@/lib/utils';
-import { Separator } from '@/index';
+import { Separator } from '@/components/core/separator';
 import {
 	AvatarAccount,
 	AvatarAccountProps,

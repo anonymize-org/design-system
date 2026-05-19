@@ -1,4 +1,5 @@
 import FileViewerFullScreenMode from '@/components/elements/full-screen-mode';
+import { cn } from '@/lib/utils';
 
 import {
 	ControlsImageFile,
@@ -13,7 +14,6 @@ import {
 	FileViewerDialogUI,
 	FileViewerDialogUIProps,
 } from '@/components/elements/file-view/dialog-file-viewer/dialog-viewer-ui';
-import { cn } from '@/index';
 
 interface FileViewerDialogControlsProps {
 	zoom: number;
