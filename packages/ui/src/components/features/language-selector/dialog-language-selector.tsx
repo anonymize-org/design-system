@@ -11,6 +11,8 @@ import {
 	type LocaleMetaKey,
 } from './constants';
 import { cn } from '@/lib/utils';
+import React from 'react';
+
 interface DialogLanguageSelectorProps {
 	open: boolean;
 	onOpenChange: (open: boolean) => void;
@@ -21,6 +23,8 @@ interface DialogLanguageSelectorProps {
 	classes?: DialogLanguageSelectorUIProps['classes'] & {
 		item?: string;
 	};
+	size?: React.ComponentProps<typeof Button>['size'];
+	variant?: React.ComponentProps<typeof Button>['variant'];
 }
 
 export function DialogLanguageSelector({
@@ -31,13 +35,15 @@ export function DialogLanguageSelector({
 	onLocaleChange,
 	className,
 	classes,
+	size = 'sm',
+	variant = 'outline',
 }: DialogLanguageSelectorProps) {
 	return (
 		<DialogLanguageSelectorUI
 			open={open}
 			onOpenChange={onOpenChange}
 			trigger={
-				<Button variant='outline' size='sm' className={cn(className)}>
+				<Button variant={variant} size={size} className={cn(className)}>
 					{LOCALE_META[currentLocale]?.flag ?? FALL_BACK_LOCALE_META.flag}
 				</Button>
 			}

@@ -70,7 +70,6 @@ function DialogLanguageSelectorUI({
 	return (
 		<Dialog open={open} onOpenChange={onOpenChange} {...props}>
 			<DialogTrigger asChild className={className}>
-				{' '}
 				{trigger}
 			</DialogTrigger>
 			<DialogContent className={cn('sds:sm:max-w-xs', classes?.content)}>
