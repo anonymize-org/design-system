@@ -1,5 +1,11 @@
 # @secrecy/ui
 
+## 2.0.1
+
+### Patch Changes
+
+- b1126b6: add features and elements level ui components
+
 ## 2.0.0
 
 ### Major Changes
