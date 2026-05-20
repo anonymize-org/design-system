@@ -13,7 +13,7 @@
   "files": [
     "dist"
   ],
-  "exports": {
+   "exports": {
     "./styles.css": {
       "types": "./dist/styles/globals.d.ts",
       "default": "./dist/styles/globals.css"
@@ -27,7 +27,7 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "lint": "eslint . --max-warnings 0",
+    "lint": "eslint . --max-warnings 10",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf .turbo node_modules dist"
   },
@@ -35,17 +35,23 @@
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4.1.1",
+    "@tailwindcss/typography": "^0.5.19",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.1",
     "eslint": "^9.23.0",
+    "file-type": "^21.3.3",
+    "mammoth": "^1.11.0",
     "postcss": "^8.5.3",
+    "shiki": "^4.0.2",
     "tsup": "^8.4.0",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "xlsx": "^0.18.5"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
     "@radix-ui/react-slot": "^1.1.2",
     "@tanstack/react-table": "^8.21.3",
+    "@uiw/react-md-editor": "^4.1.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",

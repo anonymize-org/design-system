@@ -1,0 +1,29 @@
+import PDFFileViewer from '@secrecy/design-system/components/features/file-players/pdf/pdf-file-viewer';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
+const meta: Meta<typeof PDFFileViewer> = {
+	component: PDFFileViewer,
+	title: 'Features/PDFFileViewer',
+};
+
+export default meta;
+
+type Story = StoryObj<typeof PDFFileViewer>;
+
+export const Default: Story = {
+	render: () => {
+		return (
+			<div
+				style={{
+					width: '600px',
+					height: '800px',
+				}}>
+				<PDFFileViewer fileUrl='/pdf/sample.pdf' fileName='sample.pdf' />;
+			</div>
+		);
+	},
+	args: {
+		fileUrl: '/pdf/sample.pdf',
+		fileName: 'sample.pdf',
+	},
+};

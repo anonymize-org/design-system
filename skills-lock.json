@@ -6,6 +6,11 @@
       "sourceType": "github",
       "skillPath": "skills/turborepo/SKILL.md",
       "computedHash": "23b9416e87fb6030bf95357e380778a21afb841430e2db208ad974997be39901"
+    },
+     "shadcn": {
+      "source": "shadcn/ui",
+      "sourceType": "github",
+      "computedHash": "507f011a70e8b3ae242bdc0bb5b39fd91a1d4049a0f3c281991ccf84973d591c"
     }
   }
 }
