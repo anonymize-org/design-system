@@ -34,12 +34,9 @@ function useCodeFileViewer(file: File) {
 
 			try {
 				setIsHighlighting(true);
-
-				// 1. Récupère l'instance Shiki côté client
 				const highlighter = await getShikiInstance();
 				const loadedLanguages = highlighter.getLoadedLanguages();
 
-				// 2. Charge le langage dynamiquement si pas déjà présent
 				if (!loadedLanguages.includes(extension)) {
 					await highlighter
 						.loadLanguage(extension as import('shiki').BundledLanguage)
@@ -48,7 +45,6 @@ function useCodeFileViewer(file: File) {
 						});
 				}
 
-				// 3. Génère le HTML colorisé directement dans le navigateur
 				const highlightedHtml = highlighter.codeToHtml(text, {
 					lang: highlighter.getLoadedLanguages().includes(extension)
 						? extension
