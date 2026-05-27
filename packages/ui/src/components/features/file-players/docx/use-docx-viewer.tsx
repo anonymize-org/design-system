@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type Mammoth from 'mammoth';
+import { convertDocxToHtml } from '@/server-actions/docx-converter';
 
 const useDocxViewer = (file: File) => {
 	const [html, setHtml] = useState<string | null>(null);
@@ -16,17 +16,16 @@ const useDocxViewer = (file: File) => {
 			try {
 				const src = URL.createObjectURL(file);
 				const response = await fetch(src);
-				const mammoth = (await import('mammoth')) as typeof Mammoth;
 
 				if (!response.ok) {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
 
 				const buffer = await response.arrayBuffer();
-				const result = await mammoth.convertToHtml({ arrayBuffer: buffer });
+				const result = await convertDocxToHtml(buffer);
 
 				if (isMounted) {
-					setHtml(result.value);
+					setHtml(result);
 					setIsLoading(false);
 				}
 			} catch (err) {

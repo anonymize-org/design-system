@@ -11,7 +11,7 @@ export default defineConfig((options) => ({
 	dts: true,
 	treeshake: true,
 	splitting: true,
-	external: ['react', 'mammoth'],
+	external: ['react', 'mammoth', 'shiki', 'xlsx'],
 	clean: true,
 	...options,
 }));

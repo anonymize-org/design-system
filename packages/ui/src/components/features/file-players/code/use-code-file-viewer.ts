@@ -1,21 +1,8 @@
 import { useEffect, useState } from 'react';
-import { createHighlighter, type Highlighter } from 'shiki';
 
 import { useTextFileContent } from '../hooks/use-text-content';
 import { getFileExtension } from '../utils/file';
-
-let highlighterPromise: Promise<Highlighter> | null = null;
-
-function getHighlighterInstance() {
-	if (!highlighterPromise) {
-		highlighterPromise = createHighlighter({
-			themes: ['github-dark'],
-			langs: [],
-		});
-	}
-
-	return highlighterPromise;
-}
+import { highlightCode } from '@/server-actions/code-highlighter';
 
 function useCodeFileViewer(file: File) {
 	const { text, error } = useTextFileContent(file);
@@ -39,25 +26,7 @@ function useCodeFileViewer(file: File) {
 
 			try {
 				setIsHighlighting(true);
-				const highlighter = await getHighlighterInstance();
-				const loadedLanguages = highlighter.getLoadedLanguages();
-
-				if (!loadedLanguages.includes(extension)) {
-					const languageToLoad = extension as Parameters<
-						Highlighter['loadLanguage']
-					>[0];
-
-					await highlighter.loadLanguage(languageToLoad).catch(() => {
-						console.warn(`Language not supported by Shiki: ${extension}`);
-					});
-				}
-
-				const highlightedHtml = highlighter.codeToHtml(text, {
-					lang: highlighter.getLoadedLanguages().includes(extension)
-						? extension
-						: 'text',
-					theme: 'github-dark',
-				});
+				const highlightedHtml = await highlightCode(text, extension);
 
 				if (!cancelled) {
 					setHtml(highlightedHtml);
