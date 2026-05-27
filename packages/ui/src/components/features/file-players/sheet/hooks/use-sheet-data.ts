@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { parseSheetFile } from '@/server-actions/sheet-parser';
 
 type SheetData = (string | number | boolean | null)[][];
 
@@ -16,7 +15,16 @@ export function useSheetData(file: File) {
 		async function parse() {
 			try {
 				const buffer = await file.arrayBuffer();
-				const json = await parseSheetFile(buffer);
+				const XLSX = await import('xlsx');
+
+				const workbook = XLSX.read(buffer, { type: 'array' });
+				const firstSheetName = workbook.SheetNames[0];
+				const sheet = workbook.Sheets[firstSheetName];
+
+				const json = XLSX.utils.sheet_to_json(sheet, {
+					header: 1,
+					defval: '',
+				}) as SheetData;
 
 				if (!cancelled) setData(json);
 			} catch (err) {
