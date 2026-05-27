@@ -10,7 +10,7 @@ export default defineConfig((options) => ({
 	format: ['cjs', 'esm'],
 	dts: true,
 	treeshake: true,
-	splitting: false,
+	splitting: true,
 	external: ['react', 'mammoth', 'shiki', 'xlsx'],
 	clean: true,
 	...options,
