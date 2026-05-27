@@ -1,5 +1,11 @@
 # @secrecy/ui
 
+## 2.1.0
+
+### Minor Changes
+
+- 4b027c4: fix external packages
+
 ## 2.0.1
 
 ### Patch Changes
