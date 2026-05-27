@@ -42,3 +42,4 @@ jobs:
           publish: pnpm release
         env:
           NPM_CONFIG_PROVENANCE: true
+          NODE_OPTIONS: --max-old-space-size=8192

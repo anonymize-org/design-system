@@ -25,7 +25,7 @@
     }
   },
   "scripts": {
-    "build": "tsup",
+    "build": "NODE_OPTIONS='--max-old-space-size=8192' tsup",
     "dev": "tsup --watch",
     "lint": "eslint . --max-warnings 10",
     "typecheck": "tsc --noEmit",
