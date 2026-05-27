@@ -12,16 +12,12 @@ function SwitcherTrigger({
 	label = 'Switch organization',
 }: SwitchItem): React.ReactNode {
 	return (
-		<>
-			<div
-				className={cn(
-					'sds:bg-primary/5 sds:group-hover:bg-primary/10 sds:flex sds:items-center sds:justify-center sds:rounded-full sds:p-2 sds:duration-100',
-					className,
-				)}>
+		<div className={cn('sds:flex sds:items-center sds:gap-2', className)}>
+			<div className='sds:bg-primary/5 sds:group-hover:bg-primary/10 sds:flex sds:items-center sds:justify-center sds:rounded-full sds:p-2 sds:duration-100'>
 				<Users2 className='sds:text-primary' />
 			</div>
 			<span className='sds:text-foreground sds:text-sm'>{label}</span>
-		</>
+		</div>
 	);
 }
 

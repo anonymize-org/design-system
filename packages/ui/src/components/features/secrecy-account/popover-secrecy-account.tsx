@@ -27,17 +27,6 @@ interface PopoverAccountUIProps {
 	};
 	onManageAccount?: () => void;
 	onLogout?: () => void;
-	onSwitchOrganization?: (args: {
-		context: {
-			orgId: string;
-		};
-	}) => Promise<void>;
-	getListSecrecyOrganizations?: () => Promise<
-		{
-			id: string;
-			name: string;
-		}[]
-	>;
 	classes?: {
 		content?: string;
 		trigger?: string;
@@ -69,8 +58,8 @@ export function PopoverAccountUI({
 
 	return (
 		<Popover>
-			<PopoverTrigger className={classes?.trigger}>
-				<AvatarAccount avatar={avatar} />
+			<PopoverTrigger asChild>
+				<AvatarAccount avatar={avatar} className={classes?.trigger} />
 			</PopoverTrigger>
 			<PopoverContent
 				className={cn('sds:w-fit sds:min-w-64 sds:p-0', classes?.content)}
