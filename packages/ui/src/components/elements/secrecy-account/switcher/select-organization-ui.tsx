@@ -1,4 +1,9 @@
-import { Select, SelectContent, SelectTrigger } from '@/components/core/select';
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectTrigger,
+} from '@/components/core/select';
 import {
 	ItemLoader,
 	NoOrganizations,
@@ -38,23 +43,27 @@ function SwitchOrganizationSelectUI({
 				)}>
 				<SwitcherTrigger />
 			</SelectTrigger>
-			<SelectContent className={cn('sds:w-56 sds:p-0', classes?.content)}>
-				{isLoading ? (
-					<ItemLoader />
-				) : organizations.length === 0 ? (
-					<NoOrganizations />
-				) : (
-					organizations.map((org) => {
-						return (
-							<OrgItem
-								key={org.id}
-								org={org}
-								isCurrent={org.id === currentOrgId}
-								className={classes?.item}
-							/>
-						);
-					})
-				)}
+			<SelectContent
+				className={cn('sds:w-56 sds:p-0', classes?.content)}
+				position='popper'>
+				<SelectGroup>
+					{isLoading ? (
+						<ItemLoader />
+					) : organizations.length === 0 ? (
+						<NoOrganizations />
+					) : (
+						organizations.map((org) => {
+							return (
+								<OrgItem
+									key={org.id}
+									org={org}
+									isCurrent={org.id === currentOrgId}
+									className={classes?.item}
+								/>
+							);
+						})
+					)}
+				</SelectGroup>
 			</SelectContent>
 		</Select>
 	);

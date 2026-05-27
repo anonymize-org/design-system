@@ -30,7 +30,8 @@ function AvatarAccount({
 	className,
 	withAnimation = true,
 	classes,
-}: AvatarAccountProps): React.ReactNode {
+	...rest
+}: React.ComponentPropsWithRef<'div'> & AvatarAccountProps): React.ReactNode {
 	return (
 		<Avatar
 			className={cn(
@@ -38,7 +39,8 @@ function AvatarAccount({
 				withAnimation &&
 					'sds:group sds:hover:sds:border-primary/50 sds:relative sds:cursor-pointer sds:overflow-hidden sds:transition-all sds:duration-400',
 				className,
-			)}>
+			)}
+			{...rest}>
 			{withAnimation && <AvatarOverlay />}
 			<AvatarImage src={avatar.src ?? undefined} className={classes?.img} />
 			<AvatarFallback

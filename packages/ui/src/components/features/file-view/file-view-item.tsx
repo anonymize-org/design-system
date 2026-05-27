@@ -8,7 +8,7 @@ import { getFontSizeClass, getSizeValue, Size } from './utils/file-size-ui';
 
 interface FileViewItemProps {
 	extension: FileViewIconProps['extension'];
-	size: FileViewIconProps['size'] | Size;
+	size?: FileViewIconProps['size'] | Size;
 	label?: string;
 	classes?: {
 		tag?: string;
@@ -19,7 +19,7 @@ interface FileViewItemProps {
 
 function FileViewItem({
 	extension,
-	size,
+	size = 'md',
 	label,
 	classes,
 	...props

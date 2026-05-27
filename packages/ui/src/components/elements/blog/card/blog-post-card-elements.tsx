@@ -118,7 +118,7 @@ function BlogPostCardBody({
 	classes,
 }: {
 	title: string;
-	description: string;
+	description?: string;
 	text: string;
 	className?: string;
 	classes?: {
@@ -131,7 +131,7 @@ function BlogPostCardBody({
 		<div className={className}>
 			<h5
 				className={cn(
-					'sds:line-clamp-3 sds:text-center sds:leading-5 sds:font-bold sds:sm:text-lg',
+					'sds:line-clamp-3 sds:text-center sds:leading-5 sds:font-bold sds:sm:text-lg sds:truncate',
 					classes?.title,
 				)}>
 				{title}

@@ -1,4 +1,4 @@
-import { fileTypeFromBlob } from 'file-type';
+import { fileTypeFromBlob } from 'file-type/core';
 import { getFileExtension } from '../../file-players/utils/file';
 
 export const CODE_EXTENSIONS = new Set([
