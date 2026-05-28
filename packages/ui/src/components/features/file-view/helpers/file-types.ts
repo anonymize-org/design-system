@@ -1,4 +1,3 @@
-import { fileTypeFromBlob } from 'file-type/core';
 import { getFileExtension } from '../../file-players/utils/file';
 
 export const CODE_EXTENSIONS = new Set([
@@ -82,6 +81,7 @@ export interface MediaInfo {
  * - Si `file` est un string, on se base sur l’extension.
  */
 export async function detectMediaType(file: File | string): Promise<MediaInfo> {
+	const { fileTypeFromBlob } = await import('file-type/core');
 	let mime: string | null = null;
 	let ext: string | null = null;
 

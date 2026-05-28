@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { convertDocxToHtml } from '@/server-actions/docx-converter';
 
 const useDocxViewer = (file: File) => {
 	const [html, setHtml] = useState<string | null>(null);
@@ -9,24 +8,18 @@ const useDocxViewer = (file: File) => {
 	useEffect(() => {
 		let isMounted = true;
 
-		async function fetchAndConvert() {
+		async function convert() {
+			setIsLoading(true);
 			setHtml(null);
 			setError(null);
 
 			try {
-				const src = URL.createObjectURL(file);
-				const response = await fetch(src);
-
-				if (!response.ok) {
-					throw new Error(`HTTP error! status: ${response.status}`);
-				}
-
-				const buffer = await response.arrayBuffer();
-				const result = await convertDocxToHtml(buffer);
+				const buffer = await file.arrayBuffer();
+				const mammoth = await import('mammoth');
+				const result = await mammoth.convertToHtml({ arrayBuffer: buffer });
 
 				if (isMounted) {
-					setHtml(result);
-					setIsLoading(false);
+					setHtml(result.value);
 				}
 			} catch (err) {
 				if (isMounted) {
@@ -42,7 +35,7 @@ const useDocxViewer = (file: File) => {
 			}
 		}
 
-		fetchAndConvert();
+		convert();
 
 		return () => {
 			isMounted = false;
