@@ -50,7 +50,7 @@ function DialogFileHeader({
 	return (
 		<FullScreenDialogTitle
 			className={cn(
-				'sds:text-primary sds:max-w-60 sds:truncate sds:text-left sds:text-xl sds:sm:text-2xl sds:md:max-w-md sds:lg:max-w-fit sds:lg:text-wrap',
+				'sds:text-primary sds:text-left sds:text-xl sds:wrap-anywhere sds:sm:text-2xl',
 				className,
 			)}>
 			{title}
