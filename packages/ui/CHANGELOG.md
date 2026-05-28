@@ -1,5 +1,11 @@
 # @secrecy/ui
 
+## 2.2.0
+
+### Minor Changes
+
+- b3b3511: fix packages dynamic import
+
 ## 2.1.0
 
 ### Minor Changes
