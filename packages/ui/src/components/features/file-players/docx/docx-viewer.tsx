@@ -5,7 +5,7 @@ import {
 import { useDocxViewer } from './use-docx-viewer';
 
 import SpinnerLoader from '@/components/elements/loader/spinner';
-import { ErrorFileFallback } from '@/components/elements/media-payers/shared/file-alert-fallback';
+import { UnsupportedFileFallback } from '@/components/elements/media-payers/shared/file-alert-fallback';
 
 interface DocxViewerProps {
 	file: File;
@@ -20,7 +20,7 @@ function DocxViewer({ file, className, classes, fullScreen }: DocxViewerProps) {
 	const { html, error } = useDocxViewer(file);
 
 	if (error) {
-		return <ErrorFileFallback message={error} />;
+		return <UnsupportedFileFallback />;
 	}
 
 	if (!html) {

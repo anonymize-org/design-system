@@ -4,7 +4,7 @@ import {
 } from '@/components/elements/media-payers/code/code-file-viewer-ui';
 
 import SpinnerLoader from '@/components/elements/loader/spinner';
-import { ErrorFileFallback } from '@/components/elements/media-payers/shared/file-alert-fallback';
+import { UnsupportedFileFallback } from '@/components/elements/media-payers/shared/file-alert-fallback';
 import { useCodeFileViewer } from './use-code-file-viewer';
 
 interface CodeFileViewerProps {
@@ -25,7 +25,7 @@ function CodeFileViewer({
 	const { html, error, isLoading } = useCodeFileViewer(file);
 
 	if (error) {
-		return fallback ?? <ErrorFileFallback />;
+		return fallback ?? <UnsupportedFileFallback />;
 	}
 
 	if (isLoading) {

@@ -107,7 +107,7 @@ function FileViewerDialogUI({
 
 				<div
 					className={cn(
-						'sds:bg-muted/50 sds:max-h-[70vh] sds:w-full sds:max-w-2xl sds:overflow-hidden sds:rounded sds:p-2 sds:shadow-sm',
+						'sds:max-h-[70vh] sds:w-full sds:max-w-2xl sds:overflow-hidden sds:rounded sds:p-2',
 						classes?.body,
 					)}>
 					{children}

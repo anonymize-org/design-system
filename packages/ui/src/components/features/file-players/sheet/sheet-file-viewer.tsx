@@ -7,12 +7,12 @@ import {
 } from '@/components/elements/media-payers/sheet/table-sheet-elements';
 import { TableCell, TableHead, TableRow } from '@/components/core/table';
 import { cn } from '@/lib/utils';
-import { ErrorFileFallback } from '@/components/elements/media-payers/shared/file-alert-fallback';
+import { UnsupportedFileFallback } from '@/components/elements/media-payers/shared/file-alert-fallback';
 
 function SheetFileViewer({ file }: { file: File }): React.ReactNode {
 	const { data, error } = useSheetData(file);
 
-	if (error) return <ErrorFileFallback />;
+	if (error) return <UnsupportedFileFallback />;
 
 	if (!data) return <SpinnerLoader />;
 
