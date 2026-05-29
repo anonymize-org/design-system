@@ -68,7 +68,11 @@ function FileViewerFullScreenMode({
 	classes,
 }: FullScreenViewerMode): React.ReactNode {
 	return (
-		<div className={cn('sds:fixed sds:inset-0 sds:z-9999', classes?.container)}>
+		<div
+			className={cn(
+				'sds:fixed sds:inset-0 sds:z-9999 sds:bg-muted/90 sds:supports-backdrop-filter:bg-muted/70 sds:backdrop-blur',
+				classes?.container,
+			)}>
 			<FullScreenOverlay className={classes?.overlay}>
 				{children}
 			</FullScreenOverlay>
