@@ -9,6 +9,9 @@ const config: StorybookConfig = {
 		'@storybook/addon-themes',
 		'storybook-dark-mode',
 	],
+	typescript: {
+		reactDocgen: false,
+	},
 };
 
 export default config;
