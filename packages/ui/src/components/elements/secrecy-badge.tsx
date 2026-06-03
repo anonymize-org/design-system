@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
 import { HTMLAttributeAnchorTarget } from 'react';
 import { SecrecyLongLogo } from './svg/secrecy-long-logo';
+import { SecrecyLongLogoDark } from './svg/secrecy-long-logo-dark';
 
 function BadgeDot({
 	className,
@@ -49,10 +50,12 @@ function BadgeLogo({
 	anchorProps,
 	className,
 	classes,
+	darkMode,
 }: {
 	anchorProps?: Omit<React.ComponentProps<'a'>, 'className'>;
 	className?: string;
 	classes?: string;
+	darkMode?: boolean;
 }): React.ReactNode {
 	const logo = (
 		<SecrecyLongLogo
@@ -74,12 +77,21 @@ function BadgeLogo({
 				className,
 			)}
 			{...anchorProps}>
-			<SecrecyLongLogo
-				className={cn(
-					'sds:inline-block sds:h-6 sds:w-auto sds:align-middle sds:transition-all sds:duration-200 sds:hover:scale-105 sds:hover:brightness-110',
-					classes,
-				)}
-			/>
+			{darkMode ? (
+				<SecrecyLongLogoDark
+					className={cn(
+						'sds:inline-block sds:h-6 sds:w-auto sds:align-middle sds:transition-all sds:duration-200 sds:hover:scale-105 sds:hover:brightness-110',
+						classes,
+					)}
+				/>
+			) : (
+				<SecrecyLongLogo
+					className={cn(
+						'sds:inline-block sds:h-6 sds:w-auto sds:align-middle sds:transition-all sds:duration-200 sds:hover:scale-105 sds:hover:brightness-110',
+						classes,
+					)}
+				/>
+			)}
 		</a>
 	);
 }
@@ -91,6 +103,7 @@ export function SecrecyBadge({
 	className,
 	children,
 	classes,
+	darkMode,
 }: {
 	href?: string;
 	target?: HTMLAttributeAnchorTarget | undefined;
@@ -104,12 +117,17 @@ export function SecrecyBadge({
 		};
 		logo?: string;
 	};
+	darkMode?: boolean;
 }): React.ReactNode {
 	return (
 		<BadgeRoot className={className}>
 			<BadgeDot classes={classes?.dot} />
 			{children}
-			<BadgeLogo anchorProps={{ href, target, rel }} classes={classes?.logo} />
+			<BadgeLogo
+				anchorProps={{ href, target, rel }}
+				classes={classes?.logo}
+				darkMode={darkMode}
+			/>
 		</BadgeRoot>
 	);
 }

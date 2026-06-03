@@ -4,6 +4,9 @@ import { SecrecyBadge } from '@secrecy/design-system/components/elements/secrecy
 const meta: Meta<typeof SecrecyBadge> = {
 	component: SecrecyBadge,
 	title: 'Elements/SecrecyBadge',
+	argTypes: {
+		darkMode: { control: 'boolean' },
+	},
 };
 
 export default meta;
@@ -16,5 +19,16 @@ export const Default: Story = {
 		href: 'https://secrecy.dev',
 		target: '_blank',
 		rel: 'noreferrer',
+		darkMode: false,
+	},
+};
+
+export const DarkMode: Story = {
+	args: {
+		children: 'Powered by',
+		href: 'https://secrecy.dev',
+		target: '_blank',
+		rel: 'noreferrer',
+		darkMode: true,
 	},
 };
