@@ -12,11 +12,17 @@ const useMediaKind = (file: File | null) => {
 			return;
 		}
 
-		detectMediaType(file).then((info) => {
-			if (isMounted) {
-				setMediaKind(info.kind);
-			}
-		});
+		detectMediaType(file)
+			.then((info) => {
+				if (isMounted) {
+					setMediaKind(info.kind);
+				}
+			})
+			.catch(() => {
+				if (isMounted) {
+					setMediaKind('unknown');
+				}
+			});
 
 		return () => {
 			isMounted = false;

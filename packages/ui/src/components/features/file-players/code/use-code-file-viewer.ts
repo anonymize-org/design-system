@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTextFileContent } from '../hooks/use-text-content';
 import { getFileExtension } from '../utils/file';
+import { optionalDependencyError } from '../utils/optional-dependency';
 
 let shikiPromise: Promise<import('shiki').Highlighter> | null = null;
 
@@ -16,9 +17,10 @@ async function getShikiInstance() {
 }
 
 function useCodeFileViewer(file: File) {
-	const { text, error } = useTextFileContent(file);
+	const { text, error: textError } = useTextFileContent(file);
 	const [html, setHtml] = useState<string>('');
 	const [isHighlighting, setIsHighlighting] = useState(false);
+	const [highlightError, setHighlightError] = useState<Error | null>(null);
 
 	const extension = getFileExtension(file.name).toLowerCase();
 
@@ -34,6 +36,7 @@ function useCodeFileViewer(file: File) {
 
 			try {
 				setIsHighlighting(true);
+				setHighlightError(null);
 				const highlighter = await getShikiInstance();
 				const loadedLanguages = highlighter.getLoadedLanguages();
 
@@ -58,6 +61,7 @@ function useCodeFileViewer(file: File) {
 			} catch (err) {
 				if (!cancelled) {
 					setHtml('');
+					setHighlightError(optionalDependencyError('shiki', err));
 				}
 				console.error('Shiki highlight error:', err);
 			} finally {
@@ -76,7 +80,7 @@ function useCodeFileViewer(file: File) {
 
 	return {
 		html,
-		error,
+		error: textError ?? highlightError,
 		isHighlighting,
 		isLoading: text === null || isHighlighting,
 	};

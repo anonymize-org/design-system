@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { optionalDependencyError } from '../../utils/optional-dependency';
 
 type SheetData = (string | number | boolean | null)[][];
 
@@ -28,7 +29,7 @@ export function useSheetData(file: File) {
 
 				if (!cancelled) setData(json);
 			} catch (err) {
-				if (!cancelled) setError(err as Error);
+				if (!cancelled) setError(optionalDependencyError('xlsx', err));
 			}
 		}
 

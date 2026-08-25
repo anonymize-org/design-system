@@ -12,7 +12,7 @@ import { ErrorFileFallback } from '@/components/elements/media-payers/shared/fil
 function SheetFileViewer({ file }: { file: File }): React.ReactNode {
 	const { data, error } = useSheetData(file);
 
-	if (error) return <ErrorFileFallback />;
+	if (error) return <ErrorFileFallback message={error.message} />;
 
 	if (!data) return <SpinnerLoader />;
 
