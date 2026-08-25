@@ -45,7 +45,7 @@
     "shiki": "^4.0.2",
     "tsup": "^8.4.0",
     "typescript": "5.8.3",
-    "xlsx": "^0.18.5"
+    "xlsx": "npm:@stackline/xlsx@^1.0.6"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
@@ -74,7 +74,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "shiki": "^4.0.2",
-    "xlsx": "^0.18.5"
+    "xlsx": ">=0.18.5"
   },
   "peerDependenciesMeta": {
     "mammoth": {

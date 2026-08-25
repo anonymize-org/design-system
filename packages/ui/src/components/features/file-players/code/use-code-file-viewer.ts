@@ -7,10 +7,28 @@ let shikiPromise: Promise<import('shiki').Highlighter> | null = null;
 
 async function getShikiInstance() {
 	if (!shikiPromise) {
-		const { createHighlighter } = await import('shiki');
+		// The try/catch has to wrap the `import()` itself, not just the call site:
+		// bundlers only treat an unresolvable dynamic import as optional when it is
+		// guarded here. Without it Turbopack fails the consumer's build outright
+		// ("Module not found: Can't resolve 'shiki'") instead of letting the viewer
+		// surface a message at runtime.
+		let createHighlighter: typeof import('shiki').createHighlighter;
+
+		try {
+			({ createHighlighter } = await import('shiki'));
+		} catch (err) {
+			throw optionalDependencyError('shiki', err);
+		}
+
+		// Cache the promise so concurrent callers share one highlighter, but drop it
+		// again if it rejects: a cached rejection would make every later attempt fail
+		// with the original error instead of retrying.
 		shikiPromise = createHighlighter({
 			themes: ['github-dark'],
 			langs: [],
+		}).catch((err: unknown) => {
+			shikiPromise = null;
+			throw err;
 		});
 	}
 	return shikiPromise;
