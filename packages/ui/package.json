@@ -32,6 +32,7 @@
     "clean": "rm -rf .turbo node_modules dist"
   },
   "devDependencies": {
+    "@office-kit/xlsx": "^0.9.0",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4.1.1",
@@ -44,8 +45,7 @@
     "postcss": "^8.5.3",
     "shiki": "^4.0.2",
     "tsup": "^8.4.0",
-    "typescript": "5.8.3",
-    "xlsx": "npm:@stackline/xlsx@^1.0.6"
+    "typescript": "5.8.3"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
@@ -74,7 +74,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "shiki": "^4.0.2",
-    "xlsx": ">=0.18.5"
+    "@office-kit/xlsx": "^0.9.0"
   },
   "peerDependenciesMeta": {
     "mammoth": {
@@ -83,7 +83,7 @@
     "shiki": {
       "optional": true
     },
-    "xlsx": {
+    "@office-kit/xlsx": {
       "optional": true
     }
   },
