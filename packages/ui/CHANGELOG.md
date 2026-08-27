@@ -1,5 +1,11 @@
 # @secrecy/ui
 
+## 2.2.1
+
+### Patch Changes
+
+- cbb4be9: fix external packages dependencies
+
 ## 2.2.0
 
 ### Minor Changes
