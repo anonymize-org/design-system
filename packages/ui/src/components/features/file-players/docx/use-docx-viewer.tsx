@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { optionalDependencyError } from '../utils/optional-dependency';
 
 const useDocxViewer = (file: File) => {
 	const [html, setHtml] = useState<string | null>(null);
@@ -23,9 +24,7 @@ const useDocxViewer = (file: File) => {
 				}
 			} catch (err) {
 				if (isMounted) {
-					setError(
-						err instanceof Error ? err.message : 'Failed to load document',
-					);
+					setError(optionalDependencyError('mammoth', err).message);
 					setHtml(null);
 				}
 			} finally {

@@ -25,7 +25,7 @@ function CodeFileViewer({
 	const { html, error, isLoading } = useCodeFileViewer(file);
 
 	if (error) {
-		return fallback ?? <ErrorFileFallback />;
+		return fallback ?? <ErrorFileFallback message={error.message} />;
 	}
 
 	if (isLoading) {
