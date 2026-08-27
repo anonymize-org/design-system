@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/anonymize-org/design-system.git"
   },
-  "version": "2.2.0",
+  "version": "2.2.1",
   "sideEffects": [
     "**/*.css"
   ],
